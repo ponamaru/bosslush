@@ -1,0 +1,36 @@
+<html>
+<img id="attention" src="clickMe.png" width="100%">
+<style>
+html, body {
+    overflow: hidden;
+}
+#attention{
+    	position: absolute;
+    top: 0;
+	left: 0;
+}
+#selectText {
+    	position: absolute;
+    top: 450;
+	left: 950;
+display: none;
+	  color: #FFF;
+ font-size: 30;
+font-family: serif;
+}
+</style>
+<script>
+addEventListener( "click", clickStart); addEventListener( "keydown", clickStart);
+
+function clickStart(){
+window.location = 'st.html';
+}
+document.addEventListener('click', function() {
+    parent.postMessage('clicked', "*"); 
+});
+document.addEventListener('keydown', function() {
+var key_code = event.keyCode;
+parent.postMessage('keyplessed', "*");
+});
+</script>
+</html>

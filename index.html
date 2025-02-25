@@ -1,0 +1,126 @@
+<html>
+<audio id="bgmT" src="pool.mp3"></audio>
+<div id="blackSquare"></div><div id="square-boder"></div>
+<style>
+#Cscreen {
+    	position: absolute;
+    top: 0;
+	left: 0;
+}
+#blackSquare {
+        background-color: black;
+    	position: absolute;
+    width: 100%;
+    height: 200%;
+    top: 0;
+opacity: 0;
+	left: 0;
+}
+html, body {
+    overflow: hidden;
+}
+#title {
+    	position: absolute;
+    top: 0;
+	left: 0;
+}
+#skillD2{
+    	position: absolute;
+    top: 0;
+	left: 0;
+}
+#attention{
+    	position: absolute;
+    top: 0;
+	left: 0;
+}
+#selectText {
+    	position: absolute;
+    top: 450;
+	left: 950;
+display: none;
+	  color: #FFF;
+ font-size: 30;
+font-family: serif;
+}
+ #triangle {
+display: none;
+     width: 0;
+         	position: absolute;
+    top: 450;
+	left: 900;
+     height: 0;
+     border-top: 20px solid transparent;
+     border-right: 40px solid orange;
+     transform: scale(-0.7, 0.7);
+     border-bottom: 20px solid transparent;
+ }
+
+</style>
+<script>
+var bgm = false;
+
+var fun = "attention";
+
+window.addEventListener('message', function(event) {
+    if (event.data === 'clicked') {
+        fun = "title";
+        const audio = document.getElementById("bgmT");
+
+        if (audio) {
+            audio.volume = 1;
+            audio.loop = true;
+
+            audio.play().catch(error => {
+                console.error("音声の再生に失敗しました: ", error);
+            });
+
+            bgm = true;
+        } else {
+            console.error("bgmT が見つかりません。");
+        }
+    }
+    if (event.data === 'keyplessed') {
+if(fun === "title"){
+
+fun = "battle";
+af();
+}
+    }
+    if (event.data === 'GOstageselect') {
+
+}
+
+});
+
+function af() {
+const audio = document.getElementById("bgmT");
+let timerid = setInterval( ()=>{
+
+  if( (audio.volume - 0.1) <= 0 ){
+    audio.volume = 0;
+    audio.pause();
+audio.currentTime = 0; 
+    clearInterval(timerid); 
+  }
+
+  else{
+    audio.volume -= 0.1;
+  }
+}
+, 200); 
+}
+
+window.addEventListener("DOMContentLoaded", function () {
+    const iframe = document.getElementById("Cscreen");
+
+    if (iframe) {
+        iframe.contentWindow.postMessage({ action: "startGame" }, "*");
+    } else {
+        console.error("iframeが見つかりません。");
+    }
+});
+
+</script>
+<iframe id="Cscreen" src='log.html' width="100%" height="100%"></iframe>
+</html>

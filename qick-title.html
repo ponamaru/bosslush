@@ -1,0 +1,193 @@
+<html>
+<style>
+
+#blackSquare {
+        background-color: black;
+    	position: absolute;
+    width: 100%;
+    height: 200%;
+    top: 0;
+opacity: 0;
+	left: 0;
+}
+html, body {
+    overflow: hidden;
+background-color: black;
+}
+#title {
+    	position: absolute;
+    top: 0;
+	left: 0;
+}
+#skillD2{
+    	position: absolute;
+    top: 0;
+	left: 0;
+}
+#attention{
+    	position: absolute;
+    top: 0;
+	left: 0;
+}
+#selectText {
+    	position: absolute;
+    top: 50;
+	left: 100;
+
+	  color: #FFF;
+ font-size: 30;
+font-family: serif;
+}
+#bossIntro {
+    	position: absolute;
+    top: 400;
+	left: 610;
+
+	  color: #FFF;
+ font-size: 30;
+font-family: serif;
+}
+
+#square-boder {
+    width: 930px;
+    height: 760px;
+    	position: absolute;
+    top: 10;
+	left: 600;
+  border: 1px solid #FFF;
+}
+#bossImg {
+    height: 380px;
+    	position: absolute;
+    top: 20;
+	left: 800;
+}
+ #triangle {
+
+     width: 0;
+         	position: absolute;
+    top: 100;
+	left: 50;
+     height: 0;
+     border-top: 20px solid transparent;
+     border-right: 40px solid orange;
+     transform: scale(-0.7, 0.7);
+     border-bottom: 20px solid transparent;
+ }
+</style>
+
+<div id="selectText"></div>
+<div id="bossIntro">a</div>
+<img id="bossImg" src="car.png">
+<div id="triangle"></div>
+<div id="square-boder"></div>
+<div id="blackSquare"></div>
+<script>
+var bossIntro = ["aaaaaaa","bbbbb","ccccc"];
+var bossImg = ["car.png","59.png","face.png"];
+var Ty = 100;
+var decide = 1;
+addEventListener( "keydown", x);
+const nC = document.getElementById("selectText").innerText.replace(/\\n/g, "\n");  
+const nC2 = document.getElementById("bossIntro").innerText.replace(/\\n/g, "\n");  
+document.getElementById("selectText").innerText = "xキーでタイトル画面に戻る\nboss1\nboss\nboss";
+
+document.addEventListener('keydown', function() {
+var key_code = event.keyCode;
+if(key_code === 90){
+parent.postMessage('keyplessed', "*");
+}
+});
+
+function x() {
+var key_code = event.keyCode;
+  if (key_code === 88) {
+window.location = 'st.html';
+}
+  if (key_code === 90) {
+setTimeout(() => {
+window.location = 'qick.html';
+}, 1000);
+af();
+inout();
+}
+
+
+  if (key_code === 38) {
+if(decide > 1){
+Ty -= 50;
+decide -= 1;
+}
+}
+  if (key_code === 40) {
+if(decide < 3){
+Ty += 50;
+decide += 1;
+}
+}
+document.getElementById( 'triangle' ).style.top = Ty;
+document.getElementById("bossIntro").innerText = bossIntro[decide - 1];
+document.getElementById("bossImg").src = bossImg[decide - 1];
+}
+document.getElementById("bossIntro").innerText = bossIntro[decide - 1];
+document.getElementById("bossImg").src = bossImg[decide - 1];
+
+function cutIn () { 
+document.getElementById("blackSquare").style.opacity = 1;
+document.getElementById("blackSquare").animate(
+
+	[
+		{ transform: 'translateY(800px)' },
+		{ transform: 'translateY(0px)' }
+	],
+	{
+		duration: 500,
+		easing: 'linear',
+	},
+);
+}
+
+function cutOut () {
+document.getElementById("blackSquare").style.opacity = 1;
+document.getElementById("blackSquare").animate(
+
+	[
+		{ transform: 'translateY(0px)' },
+		{ transform: 'translateY(-1800px)' }
+	],
+	{
+		duration: 500,
+		easing: 'linear',
+	},
+);
+setTimeout(() => {
+document.getElementById("blackSquare").style.opacity = 0;
+}, 500);
+}
+
+function af() {
+const audio = document.getElementById("bgmT");
+let timerid = setInterval( ()=>{
+
+  if( (audio.volume - 0.1) <= 0 ){
+    audio.volume = 0;
+    audio.pause();
+audio.currentTime = 0; 
+    clearInterval(timerid); 
+  }
+
+  else{
+    audio.volume -= 0.1;
+  }
+}
+, 200); 
+}
+function inout(){
+cutIn();
+setTimeout(() => {
+cutOut();
+}, 1000);
+
+}
+</script>
+</html>

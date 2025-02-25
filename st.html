@@ -1,0 +1,257 @@
+<html>
+<audio id="bgmT" src="pool.mp3"></audio>
+<div id="Ifr">
+<img id="skillD2" src="イラスト5.png" width="100%">
+<img id="title" src="title.png" width="100%">
+<img id="attention" src="clickMe.png" width="100%">
+<div id="selectText"></div>
+<div id="triangle"></div>
+</div>
+<div id="blackSquare" class="in"></div>
+<style>
+
+#blackSquare {
+        background-color: black;
+    	position: absolute;
+    width: 100%;
+    height: 200%;
+    top: 0;
+	left: 0;
+
+}
+.in {
+  animation : fade 1s;
+  animation-fill-mode: both;
+}
+@keyframes fade {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+html, body {
+    overflow: hidden;
+}
+#title {
+    	position: absolute;
+    top: 0;
+	left: 0;
+}
+#skillD2{
+    	position: absolute;
+    top: 0;
+	left: 0;
+}
+#attention{
+    	position: absolute;
+    top: 0;
+	left: 0;
+}
+#selectText {
+    	position: absolute;
+    top: 450;
+	left: 950;
+display: none;
+	  color: #FFF;
+ font-size: 30;
+font-family: serif;
+}
+ #triangle {
+display: none;
+     width: 0;
+         	position: absolute;
+    top: 450;
+	left: 900;
+     height: 0;
+     border-top: 20px solid transparent;
+     border-right: 40px solid orange;
+     transform: scale(-0.7, 0.7);
+     border-bottom: 20px solid transparent;
+ }
+</style>
+<script>
+var bgm = false;
+const nC = document.getElementById("selectText").innerText.replace(/\\n/g, "\n");  
+document.getElementById("selectText").innerText = "始める\nステージセレクト\nギャラリー";
+
+var fun = "attention";
+addEventListener( "keydown", z);  addEventListener( "keydown", x);
+
+
+if(fun === "attention"){
+fun = "op";
+setTimeout(() => {
+
+document.getElementById( 'title' ).animate(
+
+	[
+		{ transform: 'translateX(0px)' },
+	{ transform: 'translateX(830px)' }
+	],
+	{
+		duration: 1000,
+fill: "forwards",
+		easing: 'ease-out',
+	},
+);
+}, 1000);
+setTimeout(() => {
+document.getElementById( 'selectText' ).style.display = 'block';
+document.getElementById( 'triangle' ).style.display = 'block';
+fun = "title";
+}, 2000);
+document.getElementById( 'attention' ).style.display = 'none';
+}
+
+function z () {
+var key_code = event.keyCode;
+  if (key_code === 90) {
+if(fun === "attention"){
+fun = "op";
+setTimeout(() => {
+
+document.getElementById( 'title' ).animate(
+
+	[
+		{ transform: 'translateX(0px)' },
+	{ transform: 'translateX(830px)' }
+	],
+	{
+		duration: 1000,
+fill: "forwards",
+		easing: 'ease-out',
+	},
+);
+}, 1000);
+setTimeout(() => {
+document.getElementById( 'selectText' ).style.display = 'block';
+document.getElementById( 'triangle' ).style.display = 'block';
+fun = "title";
+}, 2000);
+document.getElementById( 'attention' ).style.display = 'none';
+}
+if(fun === "title"){
+if(decide === 1) {
+setTimeout(() => {
+window.location = 'qick.html';
+fun = "battle";
+parent.postMessage('keyplessed', "*");
+}, 1000);
+af();
+inout();
+}
+if(decide === 2){
+fun = "stageSelect";
+window.location = 'qick-title.html';
+}
+if(decide === 3){
+fun = "garally";
+window.location = 'garally.html';
+}
+}
+}
+}
+
+setTimeout(() => {
+
+}, 1000);
+
+var Ty = 450;
+var decide = 1;
+
+function bgmC() {
+if(bgm === false) {
+
+var key_code = event.keyCode;
+const audio = document.getElementById("bgmT");
+audio.play();
+audio.volume = 1;
+audio.loop = true;
+bgm = true;
+}
+}
+
+function x() {
+var key_code = event.keyCode;
+if(fun === "title"){
+
+  if (key_code === 38) {
+if(decide > 1){
+Ty -= 50;
+decide -= 1;
+}
+}
+  if (key_code === 40) {
+if(decide < 3){
+Ty += 50;
+decide += 1;
+}
+}
+document.getElementById( 'triangle' ).style.top = Ty;
+}
+}
+
+function af() {
+const audio = document.getElementById("bgmT");
+let timerid = setInterval( ()=>{
+
+  if( (audio.volume - 0.1) <= 0 ){
+    audio.volume = 0;
+    audio.pause();
+audio.currentTime = 0; 
+    clearInterval(timerid); 
+  }
+
+  else{
+    audio.volume -= 0.1;
+  }
+}
+, 200); 
+}
+function inout(){
+cutIn();
+setTimeout(() => {
+cutOut();
+}, 1000);
+
+}
+
+function cutIn () { 
+    document.getElementById("blackSquare").classList.remove("in");
+    document.getElementById("blackSquare").classList.add("op1");
+document.getElementById("blackSquare").style.opacity = 1;
+document.getElementById("blackSquare").animate(
+
+	[
+		{ transform: 'translateY(800px)' },
+		{ transform: 'translateY(0px)' }
+	],
+	{
+		duration: 500,
+		easing: 'linear',
+	},
+);
+}
+
+function cutOut () {
+document.getElementById("blackSquare").style.opacity = 1;
+document.getElementById("blackSquare").animate(
+
+	[
+		{ transform: 'translateY(0px)' },
+		{ transform: 'translateY(-1800px)' }
+	],
+	{
+		duration: 500,
+		easing: 'linear',
+	},
+);
+setTimeout(() => {
+document.getElementById("blackSquare").style.opacity = 0;
+}, 500);
+}
+
+</script>
+</html>
