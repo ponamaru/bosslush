@@ -7,8 +7,14 @@
 <div id="selectText"></div>
 <div id="triangle"></div>
 </div>
+<p><font color="#ffffff">上下矢印キーで選ぶ、zキーで決定</font></p>
 <div id="blackSquare" class="in"></div>
 <style>
+p {
+    position: relative;
+    z-index: 1; /* 他の要素より前面に表示 */
+    background-color:rgba(0,0,0,0.5);
+}
 
 #blackSquare {
         background-color: black;
@@ -17,7 +23,7 @@
     height: 200%;
     top: 0;
 	left: 0;
-
+    z-index: 6;
 }
 .in {
   animation : fade 1s;
@@ -38,6 +44,7 @@ html, body {
     	position: absolute;
     top: 0;
 	left: 0;
+    z-index: 3;
 }
 #skillD2{
     	position: absolute;
@@ -56,11 +63,13 @@ html, body {
 display: none;
 	  color: #FFF;
  font-size: 30;
+    z-index: 5;
 font-family: serif;
 }
  #triangle {
 display: none;
      width: 0;
+    z-index: 4;
          	position: absolute;
     top: 450;
 	left: 900;
