@@ -347,7 +347,7 @@ display: none;
 }
     </style>
 </head>
-<audio id="bgmT" src="dorakue9.m4a"></audio>
+<audio id="bgmT" src="dorakue9.m4a"></audio><audio id="bgmT2" src="効果音ラボ/決定ボタンを押す2.mp3"></audio>
 <img id="enemy1" class="op1" src="Slime_JE1.png"> <img class="op1" id="enemy2" src="Slime_JE1.png"><img class="op1" id="enemy3" src="Slime_JE1.png">
 <img id="cr" src="black.png">
 <div id="hpmpUI">
@@ -381,10 +381,10 @@ display: none;
 <div id="triangle"></div><div class="blinking" id="triangleD"></div><div class="blinking"  id="triangleU"></div>
 <div id="fun">MP:100</div>
 <div id="select">こうげき</div><div id="select2">スキル</div><div id="select3">アイテム</div>
-
+<img src="black.png" id="blackSkill">
 <div id="area" class="typing-animation"></div>
 <p>zキーで決定、xキーでキャンセル</p>
-<img src="black.png" id="blackSkill">
+
 <div id="blackSquare"></div>
 <script>
 var friendAttack = [20,20,20,20];
@@ -421,6 +421,11 @@ var skillMp4 = [5,5,5,5,5,5,null];
 var skillEffectL4 = [0,0,0,0];
 var skillEffectB4 = [20,20,20,20];
 var skillgifs4 = ["car.png","59.png","car.png","59.png","car.png","59.png"];
+var skillsound = [
+["効果音ラボ/大パンチ.mp3","効果音ラボ/小パンチ.mp3","効果音ラボ/小パンチ.mp3","効果音ラボ/小パンチ.mp3","効果音ラボ/小パンチ.mp3"],
+["効果音ラボ/大パンチ.mp3","効果音ラボ/小パンチ.mp3","効果音ラボ/小パンチ.mp3","効果音ラボ/小パンチ.mp3","効果音ラボ/小パンチ.mp3"],
+["効果音ラボ/大パンチ.mp3","効果音ラボ/小パンチ.mp3","効果音ラボ/小パンチ.mp3","効果音ラボ/小パンチ.mp3","効果音ラボ/小パンチ.mp3"],
+["効果音ラボ/大パンチ.mp3","効果音ラボ/小パンチ.mp3","効果音ラボ/小パンチ.mp3","効果音ラボ/小パンチ.mp3","効果音ラボ/小パンチ.mp3"]];
 
 var itemIntro = ["アイテム1","アイテム2","アイテム3","アイテム4","アイテム5","アイテム6",null];
 var itemN = [3,3,2,3,3,3,null];
@@ -454,6 +459,9 @@ var aiOver = 0;
 var bgm = false;
 var bgmT = ["dorakue9.m4a"];
 const nC = document.getElementById("area").innerText.replace(/\\n/g, "\n");  
+var enemyAction = ["こうげき","攻撃力ダウン"];
+var enemyAction2 = ["こうげき","攻撃力ダウン"];
+var enemyAction3 = ["こうげき","攻撃力ダウン"];
 
 document.getElementById( 'enemy2' ).style.display = 'none';
 document.getElementById( 'enemy3' ).style.display = 'none';
@@ -512,6 +520,10 @@ audio.play();
 }
 
 function damageE() {
+const audio2 = document.getElementById("bgmT2");
+audio2.pause();
+audio2.src = "効果音ラボ/小パンチ.mp3";
+audio2.play();
 const image = document.getElementById(enemyId[enemyName.indexOf(action[attaker])]);
 const image2 = document.getElementById(enemyId[enemyName.indexOf(target[attaker])]);
 if(enemyName.includes(action[attaker]) === true){
@@ -576,7 +588,7 @@ enemyId.splice( aiful,1 );
     }
 }
 function carsol() {
-document.getElementById("fun").innerText = action;
+document.getElementById("fun").innerText = attackE;
 if(selectfun === 1)document.getElementById( 'cr' ).style.display = 'block';
 if(document.getElementById("area").innerText.includes(friend[3]) === true)document.getElementById( 'cr' ).src = crI[3];
 if(document.getElementById("area").innerText.includes(friend[2]) === true)document.getElementById( 'cr' ).src = crI[2];
@@ -663,8 +675,11 @@ window.location = 'st.html';
     }
 }
 	if( key_code === 90 ) {
-    if((selectfun === 4)||(selectfun === 3)){
-
+    if((selectfun === 1)||(selectfun === 2)||(selectfun === 4)||(selectfun === 3)){
+const audio2 = document.getElementById("bgmT2");
+audio2.pause();
+audio2.src = "効果音ラボ/決定ボタンを押す2.mp3";
+audio2.play();
 }
 document.getElementById( 'triangleU' ).style.display = 'none';
 document.getElementById( 'triangleD' ).style.display = 'none';
@@ -830,6 +845,10 @@ if(selectfun === 6){trun();} //攻撃反映、すでに攻撃対象がタヒん�
 }
 }
     if( key_code === 88 ) {
+const audio2 = document.getElementById("bgmT2");
+audio2.pause();
+audio2.src = "効果音ラボ/スポッ.mp3";
+audio2.play();
 document.getElementById( 'triangleU' ).style.display = 'none';
 document.getElementById( 'triangleD' ).style.display = 'none';
 if((selectfun === 1)&&(attaker > 0)) {
@@ -918,10 +937,8 @@ random2 += 1;
     }
 }
 if(attaker > Cfriend -1){
-friendHp[random2] -= random; //ダメージをくらう
-array[4] = enemyName[attackE - 1] + "は攻撃した\n" + friend[random2] + "に" + random + "ダメージ"; 
-if(friendHp[random2] < 1)Cfriend -= 1;
-if(Cfriend < 1) fun = 1;
+ //ダメージをくらう
+enemySkill();
     }
 }else{
 attackE = 0;
@@ -1436,6 +1453,14 @@ if(attaker === 0)friendMp[attaker] -= skillMp[skillIntro.indexOf(action[attaker]
 if(attaker === 1)friendMp[attaker] -= skillMp2[skillIntro2.indexOf(action[attaker])];
 if(attaker === 2)friendMp[attaker] -= skillMp3[skillIntro3.indexOf(action[attaker])];
 if(attaker === 3)friendMp[attaker] -= skillMp4[skillIntro4.indexOf(action[attaker])];
+
+const audio2 = document.getElementById("bgmT2");
+if(attaker === 0)audio2.src = skillsound[attaker][skillIntro.indexOf(action[attaker])];
+if(attaker === 1)audio2.src = skillsound[attaker][skillIntro2.indexOf(action[attaker])];
+if(attaker === 2)audio2.src = skillsound[attaker][skillIntro3.indexOf(action[attaker])];
+if(attaker === 3)audio2.src = skillsound[attaker][skillIntro4.indexOf(action[attaker])];
+audio2.play();
+
 if(enemyHp[target[attaker]] < 1){
     Cenemy -= 1;
 if(Cenemy < 1)fun = 2;
@@ -1480,6 +1505,20 @@ if(attaker === 0)document.getElementById( 'blackSkill' ).src = skillgifs[skillIn
 if(attaker === 1)document.getElementById( 'blackSkill' ).src = skillgifs2[skillIntro.indexOf(action[attaker])];
 if(attaker === 2)document.getElementById( 'blackSkill' ).src = skillgifs3[skillIntro.indexOf(action[attaker])];
 if(attaker === 3)document.getElementById( 'blackSkill' ).src = skillgifs4[skillIntro.indexOf(action[attaker])];
+
+setTimeout(() => {
+document.getElementById("blackSkill").animate(
+
+	[
+		{ opacity: 1 },
+		{ opacity: 0 }
+	],
+	{
+		duration: 500,
+		easing: 'linear',
+	},
+);
+}, 1500);
 setTimeout(() => {
 document.getElementById( 'blackSkill' ).style.display = 'none'; 
 }, 2000);
@@ -1513,6 +1552,65 @@ document.getElementById( 'select3' ).style.display = 'none';
 document.getElementById( 'triangleU' ).style.display = 'none';
 document.getElementById( 'triangleD' ).style.display = 'none';
     }
+
+function enemySkill(){
+if(attackE === 1)var random3 = Math.floor(Math.random() * enemyAction.length);
+if(attackE === 2)var random3 = Math.floor(Math.random() * enemyAction.length);
+if(attackE === 3)var random3 = Math.floor(Math.random() * enemyAction.length);
+if(attackE === 0){
+friendHp[random2] -= random; //ダメージをくらう
+array[4] = enemyName[attackE - 1] + "は攻撃した\n" + friend[random2] + "に" + random + "ダメージ"; 
+if(friendHp[random2] < 1)Cfriend -= 1;
+if(Cfriend < 1) fun = 1;
+
+}
+
+if(attackE === 1){
+if(enemyAction[random3] === "こうげき"){
+friendHp[random2] -= random; //ダメージをくらう
+array[4] = enemyName[attackE - 1] + "は攻撃した\n" + friend[random2] + "に" + random + "ダメージ"; 
+if(friendHp[random2] < 1)Cfriend -= 1;
+if(Cfriend < 1) fun = 1;
+const audio2 = document.getElementById("bgmT2");
+audio2.pause();
+audio2.src = "効果音ラボ/小パンチ.mp3";
+audio2.play();
+}
+if(enemyAction[random3] === "攻撃力ダウン"){
+friendAttack[random2] -= 2;
+array[4] = enemyName[attackE - 1] + "は笑った\n" + friend[random2] + "の攻撃力が下がった"; 
+if(Cfriend < 1) fun = 1;
+}
+}
+
+if(attackE === 2){
+if(enemyAction2[random3] === "こうげき"){
+friendHp[random2] -= random; //ダメージをくらう
+array[4] = enemyName[attackE - 1] + "は攻撃した\n" + friend[random2] + "に" + random + "ダメージ"; 
+if(friendHp[random2] < 1)Cfriend -= 1;
+if(Cfriend < 1) fun = 1;
+}
+if(enemyAction[random3] === "攻撃力ダウン"){
+friendAttack[random2] -= 2;
+array[4] = enemyName[attackE - 1] + "は笑った\n" + friend[random2] + "の攻撃力が下がった"; 
+if(Cfriend < 1) fun = 1;
+}
+}
+
+if(attackE === 3){
+if(enemyAction3[random3] === "こうげき"){
+friendHp[random2] -= random; //ダメージをくらう
+array[4] = enemyName[attackE - 1] + "は攻撃した\n" + friend[random2] + "に" + random + "ダメージ"; 
+if(friendHp[random2] < 1)Cfriend -= 1;
+if(Cfriend < 1) fun = 1;
+}
+if(enemyAction[random3] === "攻撃力ダウン"){
+friendAttack[random2] -= 2;
+array[4] = enemyName[attackE - 1] + "は笑った\n" + friend[random2] + "の攻撃力が下がった"; 
+if(Cfriend < 1) fun = 1;
+}
+}
+}
 </script>
 
 </html>
