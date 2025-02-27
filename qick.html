@@ -522,7 +522,7 @@ audio.play();
 function damageE() {
 const audio2 = document.getElementById("bgmT2");
 audio2.pause();
-audio2.src = "効果音ラボ/小パンチ.mp3";
+audio2.src = "小パンチ.mp3";
 audio2.play();
 const image = document.getElementById(enemyId[enemyName.indexOf(action[attaker])]);
 const image2 = document.getElementById(enemyId[enemyName.indexOf(target[attaker])]);
@@ -678,7 +678,7 @@ window.location = 'st.html';
     if((selectfun === 1)||(selectfun === 2)||(selectfun === 4)||(selectfun === 3)){
 const audio2 = document.getElementById("bgmT2");
 audio2.pause();
-audio2.src = "効果音ラボ/決定ボタンを押す2.mp3";
+audio2.src = "決定ボタンを押す2.mp3";
 audio2.play();
 }
 document.getElementById( 'triangleU' ).style.display = 'none';
@@ -847,7 +847,7 @@ if(selectfun === 6){trun();} //攻撃反映、すでに攻撃対象がタヒん�
     if( key_code === 88 ) {
 const audio2 = document.getElementById("bgmT2");
 audio2.pause();
-audio2.src = "効果音ラボ/スポッ.mp3";
+audio2.src = "スポッ.mp3";
 audio2.play();
 document.getElementById( 'triangleU' ).style.display = 'none';
 document.getElementById( 'triangleD' ).style.display = 'none';
@@ -1518,10 +1518,10 @@ document.getElementById("blackSkill").animate(
 		easing: 'linear',
 	},
 );
-}, 1500);
+}, 1000);
 setTimeout(() => {
 document.getElementById( 'blackSkill' ).style.display = 'none'; 
-}, 2000);
+}, 1500);
 }
 
 function sct() {
@@ -1573,7 +1573,7 @@ if(friendHp[random2] < 1)Cfriend -= 1;
 if(Cfriend < 1) fun = 1;
 const audio2 = document.getElementById("bgmT2");
 audio2.pause();
-audio2.src = "効果音ラボ/小パンチ.mp3";
+audio2.src = "小パンチ.mp3";
 audio2.play();
 }
 if(enemyAction[random3] === "攻撃力ダウン"){
