@@ -1,6 +1,13 @@
 <html>
 <head>
     <style>
+#friendName, #friendName2, #friendName3, #friendName4 {
+    display: inline-block;
+    white-space: nowrap;
+    writing-mode: horizontal-tb;
+    width: auto;
+    max-width: 200px;
+}
 #editUI {
 color: #FFF;
 position: absolute;
@@ -383,7 +390,6 @@ display: none;
 <div id="select">こうげき</div><div id="select2">スキル</div><div id="select3">アイテム</div>
 <img src="black.png" id="blackSkill">
 <div id="area" class="typing-animation"></div>
-<p>zキーで決定、xキーでキャンセル</p>
 
 <div id="blackSquare"></div>
 <script>
@@ -666,6 +672,7 @@ var key_code = event.keyCode;
     
     if( result ) {
 cutIn();
+parent.postMessage('toTitle', "*");
 setTimeout(() => {
 window.location = 'st.html';
 }, 1000);
