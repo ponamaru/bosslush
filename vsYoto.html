@@ -442,7 +442,7 @@ var decide = 0;
 var nowtext = 0;
 var array = ["敵が現れた","どうする?","どうする?","行動した","たかしは","ゲームオーバー","勝利した"];
 var enemyName = ["ヨウト",null,null,null];
-var enemyHp = [150,null,null,null];
+var enemyHp = [100,null,null,null];
 var enemyId = ["enemy1","enemy2","enemy3",null];
 var y1 = 500;
 var selectOver = 1;
@@ -1570,8 +1570,8 @@ enemyId.splice( aiful,1 );
 }
 
 if(((attaker === 0)&&(skillEffect[skillIntro.indexOf(action[attaker])].includes("回復") === true))||((attaker === 1)&&(skillEffect2[skillIntro2.indexOf(action[attaker])].includes("回復") === true))||((attaker === 2)&&(skillEffect3[skillIntro3.indexOf(action[attaker])].includes("回復") === true))||((attaker === 3)&&(skillEffect4[skillIntro4.indexOf(action[attaker])].includes("回復") === true))){ 
-friendHp[friend.indexOf(target[attaker])] += 10;
-array[4] += "\n" + target[attaker] + "は10回復した";
+friendHp[friend.indexOf(target[attaker])] += 20;
+array[4] += "\n" + target[attaker] + "は20回復した";
 if(attaker === 0)friendMp[attaker] -= skillMp[skillIntro.indexOf(action[attaker])];
 if(attaker === 1)friendMp[attaker] -= skillMp2[skillIntro2.indexOf(action[attaker])];
 if(attaker === 2)friendMp[attaker] -= skillMp3[skillIntro3.indexOf(action[attaker])];
@@ -1580,7 +1580,7 @@ if(attaker === 3)friendMp[attaker] -= skillMp4[skillIntro4.indexOf(action[attake
 }
 if(action[attaker].includes("アイテム3")){ 
 random = Math.floor( Math.random() * 51 ) + 20;
-random -= enemyGuard[enemyName.indexOf(action[attaker])];
+random -= enemyGuard[enemyName.indexOf(target[attaker])];
 if(random < 0)random = 0;
 damageEa();
 array[4] += "\n" + target[attaker] + "に" + random + "ダメージ";
