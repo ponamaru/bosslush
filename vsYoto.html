@@ -1536,6 +1536,10 @@ if(attaker === 1)friendMp[attaker] -= skillMp2[skillIntro2.indexOf(action[attake
 if(attaker === 2)friendMp[attaker] -= skillMp3[skillIntro3.indexOf(action[attaker])];
 if(attaker === 3)friendMp[attaker] -= skillMp4[skillIntro4.indexOf(action[attaker])];
 
+if(attaker === 0)friendMp[attaker] -= skillMp[skillIntro.indexOf(action[attaker])];
+if(attaker === 1)friendMp[attaker] -= skillMp2[skillIntro2.indexOf(action[attaker])];
+if(attaker === 2)friendMp[attaker] -= skillMp3[skillIntro3.indexOf(action[attaker])];
+if(attaker === 3)friendMp[attaker] -= skillMp4[skillIntro4.indexOf(action[attaker])];
 const audio2 = document.getElementById("bgmT2");
 if(attaker === 0)audio2.src = skillsound[attaker][skillIntro.indexOf(action[attaker])];
 if(attaker === 1)audio2.src = skillsound[attaker][skillIntro2.indexOf(action[attaker])];
@@ -1583,10 +1587,10 @@ var aiful3 = 0;
 
 function skillDD() {
 document.getElementById( 'blackSkill' ).style.display = 'block'; 
-if(attaker === 0)document.getElementById( 'blackSkill' ).src = skillgifs[skillIntro.indexOf(action[attaker])];
-if(attaker === 1)document.getElementById( 'blackSkill' ).src = skillgifs2[skillIntro.indexOf(action[attaker])];
-if(attaker === 2)document.getElementById( 'blackSkill' ).src = skillgifs3[skillIntro.indexOf(action[attaker])];
-if(attaker === 3)document.getElementById( 'blackSkill' ).src = skillgifs4[skillIntro.indexOf(action[attaker])];
+if((attaker === 0)&&(!skillgifs[skillIntro.indexOf(action[attaker])] === null))document.getElementById( 'blackSkill' ).src = skillgifs[skillIntro.indexOf(action[attaker])];
+if((attaker === 1)&&(!skillgifs2[skillIntro2.indexOf(action[attaker])] === null))document.getElementById( 'blackSkill' ).src = skillgifs2[skillIntro2.indexOf(action[attaker])];
+if((attaker === 2)&&(!skillgifs3[skillIntro3.indexOf(action[attaker])] === null))document.getElementById( 'blackSkill' ).src = skillgifs3[skillIntro3.indexOf(action[attaker])];
+if((attaker === 3)&&(!skillgifs4[skillIntro4.indexOf(action[attaker])] === null))document.getElementById( 'blackSkill' ).src = skillgifs4[skillIntro4.indexOf(action[attaker])];
 
 setTimeout(() => {
 document.getElementById("blackSkill").animate(
