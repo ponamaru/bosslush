@@ -442,15 +442,17 @@ var decide = 0;
 var nowtext = 0;
 var array = ["敵が現れた","どうする?","どうする?","行動した","たかしは","ゲームオーバー","勝利した"];
 var enemyName = ["ヨウト",null,null,null];
-var enemyHp = [200,null,null,null];
+var enemyHp = [150,null,null,null];
 var enemyId = ["enemy1","enemy2","enemy3",null];
 var y1 = 500;
 var selectOver = 1;
 var attaker = 0; var sc = false;
 var action = [null,null,null,null];
 var friend = ["シンス","ユウガ","bob","uh"];
-var friendHp = [1,35,100,100];
+var friendHp = [50,35,100,100];
 var friendMp = [50,40,50,50];
+var friendHb = [50,35,100,100];
+var friendMb = [];
 var friendHb = [50,35,100,100];
 var friendMb = [50,40,50,50];
 var crI = ["Shinth.png","Yuga2.png","black.png","目.png"];
@@ -654,11 +656,13 @@ document.getElementById( 'square5' ).style.height = 200/friendMb[2]*friendMp[2];
 document.getElementById( 'square7' ).style.width = 200/friendMb[3]*friendMp[3];
 document.getElementById( 'square7' ).style.height = 200/friendMb[3]*friendMp[3];
 
+if((selectfun === 3)&&(!document.getElementById( 'select' ).innerText.includes(enemyName[0]) === true)
+&&(!friend.some(name => document.getElementById('select').innerText.includes(name)))){
 if((selectfun === 3)&&(attaker === 0))document.getElementById("area").innerText = skillE[decide];
 if((selectfun === 3)&&(attaker === 1))document.getElementById("area").innerText = skillE2[decide];
 if((selectfun === 3)&&(attaker === 2))document.getElementById("area").innerText = skillE3[decide];
 if((selectfun === 3)&&(attaker === 3))document.getElementById("area").innerText = skillE4[decide];
-
+}
 if(aiOver < 4){
 aiOver += 1;
 }else{
@@ -670,9 +674,9 @@ if(friendMp[aiOver] < 1)friendMp[aiOver] = 0;
 if(friendHp[aiOver] > friendHb[aiOver])friendHp[aiOver] = friendHb[aiOver];
 if(friendMp[aiOver] > friendMb[aiOver])friendMp[aiOver] = friendMb[aiOver];
 
-if((selectfun === 4)&&(!document.getElementById( 'select' ).innerText.includes(enemyName[0]) === true))document.getElementById("area").innerText = itemE[decide] + " 残り" + itemN[decide] + "個";
+if((selectfun === 4)&&(!document.getElementById( 'select' ).innerText.includes(enemyName[0]) === true)
+&&(!friend.some(name => document.getElementById('select').innerText.includes(name))))document.getElementById("area").innerText = itemE[decide] + " 残り" + itemN[decide] + "個";
 }
-
 if(document.getElementById( 'select' ).innerText.includes(enemyName[0]) === true)document.getElementById("area").innerText = null;
 
 let intervalI = setInterval(carsol, 1);
@@ -1502,8 +1506,8 @@ trun();
 
 function skillItem() {
 if(action[attaker].includes("アイテム1")){ 
-friendHp[friend.indexOf(target[attaker])] += 10;
-array[4] += "\n" + target[attaker] + "のhpは10回復した";
+friendHp[friend.indexOf(target[attaker])] += 20;
+array[4] += "\n" + target[attaker] + "のhpは20回復した";
 if(itemN[itemIntro.indexOf(action[attaker])] < 1) {
 aiful = itemIntro.indexOf(action[attaker]);
 itemN.splice( aiful,1 );
@@ -1512,8 +1516,8 @@ itemE.splice( aiful,1 );
 }
 }
 if(action[attaker].includes("アイテム2")){ 
-friendMp[friend.indexOf(target[attaker])] += 10;
-array[4] += "\n" + target[attaker] + "のmpは10回復した";
+friendMp[friend.indexOf(target[attaker])] += 20;
+array[4] += "\n" + target[attaker] + "のmpは20回復した";
 if(itemN[itemIntro.indexOf(action[attaker])] < 1) {
 aiful = itemIntro.indexOf(action[attaker]);
 itemN.splice( aiful,1 );
