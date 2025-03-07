@@ -472,7 +472,7 @@ var enemyAction = ["こうげき","全員にこうげき"];
 var enemyAction2 = ["こうげき","攻撃力ダウン"];
 var enemyAction3 = ["こうげき","攻撃力ダウン"];
 var friendGuard = [7,4,null,null];
-var enemyGuard = [3,4,null,null];
+var enemyGuard = [4,4,null,null];
 app();
 function app () {
 array[0] = "";
@@ -964,7 +964,7 @@ action[attaker] = enemyName[0];
 }
 if(enemyName.includes(action[attaker])=== true) {
 random = Math.floor( Math.random() * friendAttack[attaker] + 1 ) - enemyGuard[enemyName.indexOf(action[attaker])];
-if(random > 0)random = 0;
+if(random < 0)random = 0;
 if((enemyHp[enemyName.indexOf(action[attaker])] < 1)||(enemyName[enemyName.indexOf(action[attaker])] === null)||(action[attaker] === null)||(target[attaker] === null)) {
 action[attaker] = enemyName[0];
 }
@@ -988,7 +988,7 @@ skillItem();
 }else{
 enemyHp[0] -= random;
 random = Math.floor( Math.random() * friendAttack[attaker] + 1 ) - enemyGuard[0];
-if(random > 0)random = 0;
+if(random < 0)random = 0;
 array[4] = friend[attaker] + "の攻撃\n" + enemyName[0] + "に" + random + "ダメージ";
 damageE();
 }
@@ -1537,8 +1537,8 @@ skillDD();
 if(((attaker === 0)&&(skillEffect[skillIntro.indexOf(action[attaker])].includes("敵1体にこうげき") === true))||((attaker === 1)&&(skillEffect2[skillIntro2.indexOf(action[attaker])].includes("敵1体にこうげき") === true))||((attaker === 2)&&(skillEffect3[skillIntro3.indexOf(action[attaker])].includes("敵1体にこうげき") === true))||((attaker === 3)&&(skillEffect4[skillIntro4.indexOf(action[attaker])].includes("敵1体にこうげき") === true))){ 
 var skillLB = skillEffectL[attaker] + skillEffectB[attaker];
 random = Math.floor( Math.random() * skillLB ) + skillEffectL[attaker];
-random -= enemyGuard[enemyName.indexOf(action[attaker])];
-if(random > 0)random = 0;
+random -= enemyGuard[enemyName.indexOf(target[attaker])];
+if(random < 0)random = 0;
 enemyHp[enemyName.indexOf(target[attaker])] -= random;
 damageEa();
 array[4] += "\n" + target[attaker] + "に" + random + "ダメージ";
@@ -1581,7 +1581,7 @@ if(attaker === 3)friendMp[attaker] -= skillMp4[skillIntro4.indexOf(action[attake
 if(action[attaker].includes("アイテム3")){ 
 random = Math.floor( Math.random() * 51 ) + 20;
 random -= enemyGuard[enemyName.indexOf(action[attaker])];
-if(random > 0)random = 0;
+if(random < 0)random = 0;
 damageEa();
 array[4] += "\n" + target[attaker] + "に" + random + "ダメージ";
 if(itemN[itemIntro.indexOf(action[attaker])] < 1) {
@@ -1667,7 +1667,7 @@ if(Cfriend < 1) fun = 1;
 if(attackE === 1){
 if(enemyAction[random3] === "こうげき"){
 random -= friendGuard[random2];
-if(random > 0)random = 0;
+if(random < 0)random = 0;
 friendHp[random2] -= random; //ダメージをくらう
 array[4] = enemyName[attackE - 1] + "は攻撃した\n" + friend[random2] + "に" + random + "ダメージ"; 
 if(friendHp[random2] < 1)Cfriend -= 1;
@@ -1684,7 +1684,7 @@ if(Cfriend < 1) fun = 1;
 }
 if (enemyAction[random3] === "全員にこうげき") {
 random -= friendGuard[random2];
-if(random > 0)random = 0;
+if(random < 0)random = 0;
     let str = "";
     array[4] = enemyName[attackE - 1] + "は全員に攻撃した";
 
@@ -1720,6 +1720,8 @@ i += 1;
 
 if(attackE === 2){
 if(enemyAction2[random3] === "こうげき"){
+random -= friendGuard[random2];
+if(random < 0)random = 0;
 friendHp[random2] -= random; //ダメージをくらう
 array[4] = enemyName[attackE - 1] + "は攻撃した\n" + friend[random2] + "に" + random + "ダメージ"; 
 if(friendHp[random2] < 1)Cfriend -= 1;
@@ -1734,6 +1736,8 @@ if(Cfriend < 1) fun = 1;
 
 if(attackE === 3){
 if(enemyAction3[random3] === "こうげき"){
+random -= friendGuard[random2];
+if(random < 0)random = 0;
 friendHp[random2] -= random; //ダメージをくらう
 array[4] = enemyName[attackE - 1] + "は攻撃した\n" + friend[random2] + "に" + random + "ダメージ"; 
 if(friendHp[random2] < 1)Cfriend -= 1;
