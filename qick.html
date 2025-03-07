@@ -1,13 +1,6 @@
 <html>
 <head>
     <style>
-#friendName, #friendName2, #friendName3, #friendName4 {
-    display: inline-block;
-    white-space: nowrap;
-    writing-mode: horizontal-tb;
-    width: auto;
-    max-width: 200px;
-}
 #editUI {
 color: #FFF;
 position: absolute;
@@ -390,6 +383,7 @@ display: none;
 <div id="select">こうげき</div><div id="select2">スキル</div><div id="select3">アイテム</div>
 <img src="black.png" id="blackSkill">
 <div id="area" class="typing-animation"></div>
+<p>zキーで決定、xキーでキャンセル</p>
 
 <div id="blackSquare"></div>
 <script>
@@ -448,7 +442,7 @@ var selectOver = 1;
 var attaker = 0; var sc = false;
 var action = [null,null,null,null];
 var friend = ["takashi","hana","bob","uh"];
-var friendHp = [100,100,100,100];
+var friendHp = [1,100,100,100];
 var friendMp = [50,50,50,50];
 var friendHb = [100,100,100,100];
 var friendMb = [50,50,50,50];
@@ -468,6 +462,18 @@ const nC = document.getElementById("area").innerText.replace(/\\n/g, "\n");
 var enemyAction = ["こうげき","攻撃力ダウン"];
 var enemyAction2 = ["こうげき","攻撃力ダウン"];
 var enemyAction3 = ["こうげき","攻撃力ダウン"];
+var MAry = [];
+app();
+function app () {
+array[0] = "";
+let str = "";
+for (let i = 0; i < Cenemy; i++) {
+  str = str + i;
+if(i > 0)array[0] += "\n"
+array[0] += enemyName[i] + "が現れた"
+
+}
+}
 
 document.getElementById( 'enemy2' ).style.display = 'none';
 document.getElementById( 'enemy3' ).style.display = 'none';
@@ -594,7 +600,7 @@ enemyId.splice( aiful,1 );
     }
 }
 function carsol() {
-document.getElementById("fun").innerText = attackE;
+document.getElementById("fun").innerText = attaker + ","+ target;
 if(selectfun === 1)document.getElementById( 'cr' ).style.display = 'block';
 if(document.getElementById("area").innerText.includes(friend[3]) === true)document.getElementById( 'cr' ).src = crI[3];
 if(document.getElementById("area").innerText.includes(friend[2]) === true)document.getElementById( 'cr' ).src = crI[2];
@@ -672,7 +678,6 @@ var key_code = event.keyCode;
     
     if( result ) {
 cutIn();
-parent.postMessage('toTitle', "*");
 setTimeout(() => {
 window.location = 'st.html';
 }, 1000);
@@ -682,6 +687,14 @@ window.location = 'st.html';
     }
 }
 	if( key_code === 90 ) {
+     MAry = [];
+var NF = 0;
+for (let i = 0; i < 4; i++) {
+if(friendHp[i] > 0){
+MAry[NF] = friend[i];
+NF += 1;
+}
+}
     if((selectfun === 1)||(selectfun === 2)||(selectfun === 4)||(selectfun === 3)){
 const audio2 = document.getElementById("bgmT2");
 audio2.pause();
@@ -852,6 +865,7 @@ if(selectfun === 6){trun();} //攻撃反映、すでに攻撃対象がタヒん�
 }
 }
     if( key_code === 88 ) {
+    if(friendHp[attaker - 1] > 0){
 const audio2 = document.getElementById("bgmT2");
 audio2.pause();
 audio2.src = "スポッ.mp3";
@@ -869,6 +883,7 @@ itemE.splice(aiful3, 0, aiful5);
 }
 if(itemIntro.includes(action[attaker]) === true)itemN[itemIntro.indexOf(action[attaker])] += 1;
 }
+        }
 action[attaker] = null;
     if((selectfun === 2)||(selectfun === 3)||(selectfun === 4)){
                     y1 = 500;
@@ -899,10 +914,12 @@ sc = false;
 function trun() {
 if(attaker < Cfriend){
 if(friendHp[attaker] < 1)attaker += 1;
-
+if((action[attaker] === null)||(target[attaker] === null)) {
+action[attaker] = enemyName[0];
+}
 if(enemyName.includes(action[attaker])=== true) {
 random = Math.floor( Math.random() * friendAttack[attaker] + 1 ) + 0;
-if((enemyHp[enemyName.indexOf(action[attaker])] < 1)||(enemyName[enemyName.indexOf(action[attaker])] === null)) {
+if((enemyHp[enemyName.indexOf(action[attaker])] < 1)||(enemyName[enemyName.indexOf(action[attaker])] === null)||(action[attaker] === null)||(target[attaker] === null)) {
 action[attaker] = enemyName[0];
 }
 enemyHp[enemyName.indexOf(action[attaker])] -= random;
@@ -997,9 +1014,9 @@ type();
 function b () {
 var key_code = event.keyCode;
 
-if(( key_code === 40 )&&((document.getElementById( 'select' ).innerText.includes(friend[0]) === true)||(document.getElementById( 'select' ).innerText.includes(enemyName[0]) === true))) {
+if(( key_code === 40 )&&((friend.some(name => document.getElementById('select').innerText.includes(name)))||(document.getElementById( 'select' ).innerText.includes(enemyName[0]) === true))) {
 if(decide === 3){
-    if(!document.getElementById( 'select' ).innerText.includes(friend[0]) === true){
+    if(!friend.some(name => document.getElementById('select').innerText.includes(name))){
 y1 += 50;
 document.getElementById( 'triangle' ).style.top = y1; 
         decide += 1;
@@ -1013,7 +1030,7 @@ document.getElementById( 'triangle' ).style.top = y1;
         decide += 1;
 }
 }
-	if(( key_code === 40 )&&(document.getElementById( 'select' ).innerText.includes(friend[0]) === true)) {
+	if(( key_code === 40 )&&(friend.some(name => document.getElementById('select').innerText.includes(name)))) {
 if(decide < Cfriend - 1){ 
     y1 += 50;
 document.getElementById( 'triangle' ).style.top = y1; 
@@ -1033,7 +1050,7 @@ if(decide > 0) {
 	if( key_code === 40 ) {
 if(y1 < 600){ 
 if(skillIntro[decide + 1] === null){}else{
-    if(!document.getElementById( 'select' ).innerText.includes(friend[0]) === true){
+    if(!friend.some(name => document.getElementById('select').innerText.includes(name))){
 y1 += 50;
 document.getElementById( 'triangle' ).style.top = y1; 
         decide += 1;
@@ -1053,7 +1070,7 @@ decide -= 1;
 }
 if( key_code === 40 ) {
 if(enemyName[decide + 1] === null){}else{
-if(!document.getElementById( 'select' ).innerText.includes(friend[0]) === true){
+if(!friend.some(name => document.getElementById('select').innerText.includes(name))){
 y1 += 50;
     document.getElementById( 'triangle' ).style.top = y1;
 decide += 1;
@@ -1066,7 +1083,7 @@ if(selectfun === 3) {
 	if( key_code === 38 ) {
 if(decide > 0) {
 if(y1 < 550) {
-if(!document.getElementById( 'select' ).innerText.includes(friend[0]) === true){
+if(!friend.some(name => document.getElementById('select').innerText.includes(name))){
 document.getElementById( 'triangleU' ).style.display = 'none';
 document.getElementById( 'triangleD' ).style.display = 'block';
         y1 = 600;
@@ -1102,7 +1119,7 @@ document.getElementById("select").innerText = skillIntro4[decide - 2];
         }
 	if( key_code === 40 ) {
     if(decide === selectOver * 3 - 1) {
-if((document.getElementById( 'select' ).innerText.includes(friend[0]) === true)||(document.getElementById( 'select' ).innerText.includes(enemyName[0]) === true)){}else{
+if((friend.some(name => document.getElementById('select').innerText.includes(name)))||(document.getElementById( 'select' ).innerText.includes(enemyName[0]) === true)){}else{
 
 document.getElementById( 'triangleU' ).style.display = 'block';
 document.getElementById( 'triangleD' ).style.display = 'none';
@@ -1132,11 +1149,11 @@ document.getElementById("select3").innerText = skillIntro4[decide + 2];
 }
 }
         }else{
-if((document.getElementById( 'select' ).innerText.includes(friend[0]) === true)||(document.getElementById( 'select' ).innerText.includes(enemyName[0]) === true)){
+if((friend.some(name => document.getElementById('select').innerText.includes(name)))||(document.getElementById( 'select' ).innerText.includes(enemyName[0]) === true)){
 if(skillIntro[decide + 1] === null){}else{
 if(decide < Cfriend - 1){
 if(skillIntro[decide + 1] === null){}else{
-if(!document.getElementById( 'select' ).innerText.includes(friend[0]) === true){
+if(!friend.some(name => document.getElementById('select').innerText.includes(name))){
     y1 += 50;
 document.getElementById( 'triangle' ).style.top = y1; 
         decide += 1;
@@ -1146,7 +1163,7 @@ document.getElementById( 'triangle' ).style.top = y1;
 }
         }else{
 if(itemIntro[decide + 1] === null){}else{
-if(!document.getElementById( 'select' ).innerText.includes(friend[0]) === true){
+if(!friend.some(name => document.getElementById('select').innerText.includes(name))){
     y1 += 50;
 document.getElementById( 'triangle' ).style.top = y1; 
         decide += 1;
@@ -1160,7 +1177,7 @@ if(selectfun === 4) { //itemselect
 	if( key_code === 38 ) {
 if(decide > 0) {
 if(y1 < 550) {
-if(!document.getElementById( 'select' ).innerText.includes(friend[0]) === true){
+if(!friend.some(name => document.getElementById('select').innerText.includes(name))){
 document.getElementById( 'triangleU' ).style.display = 'none';
 document.getElementById( 'triangleD' ).style.display = 'block';
         y1 = 600;
@@ -1179,7 +1196,7 @@ document.getElementById("select3").innerText = itemIntro[decide];
     }
 	if( key_code === 40 ) {
     if(decide === selectOver * 3 - 1) {
-if((document.getElementById( 'select' ).innerText.includes(friend[0]) === true)||(document.getElementById( 'select' ).innerText.includes(enemyName[0]) === true)){}else{
+if((friend.some(name => document.getElementById('select').innerText.includes(name)))||(document.getElementById( 'select' ).innerText.includes(enemyName[0]) === true)){}else{
                 y1 = 500;
 document.getElementById( 'triangleU' ).style.display = 'block';
 document.getElementById( 'triangleD' ).style.display = 'none';
@@ -1191,11 +1208,11 @@ document.getElementById("select2").innerText = itemIntro[decide + 1];
 document.getElementById("select3").innerText = itemIntro[decide + 2];
 }
         }else{
-if((document.getElementById( 'select' ).innerText.includes(friend[0]) === true)||(document.getElementById( 'select' ).innerText.includes(enemyName[0]) === true)){
+if((friend.some(name => document.getElementById('select').innerText.includes(name)))||(document.getElementById( 'select' ).innerText.includes(enemyName[0]) === true)){
 if(itemIntro[decide + 1] === null){}else{
 if(decide < Cfriend - 1){
 if(itemIntro[decide + 1] === null){}else{
-if(!document.getElementById( 'select' ).innerText.includes(friend[0]) === true){
+if(!friend.some(name => document.getElementById('select').innerText.includes(name))){
     y1 += 50;
 document.getElementById( 'triangle' ).style.top = y1; 
         decide += 1;
@@ -1205,7 +1222,7 @@ document.getElementById( 'triangle' ).style.top = y1;
 }
         }else{
 if(itemIntro[decide + 1] === null){}else{
-if(!document.getElementById( 'select' ).innerText.includes(friend[0]) === true){
+if(!friend.some(name => document.getElementById('select').innerText.includes(name))){
     y1 += 50;
 document.getElementById( 'triangle' ).style.top = y1; 
         decide += 1;
@@ -1222,7 +1239,7 @@ document.getElementById( 'triangle' ).style.top = y1;
 
 function skillItemQTE () {
 if(selectfun === 4) {
-if((document.getElementById( 'select' ).innerText.includes(friend[0]) === true)||(document.getElementById( 'select' ).innerText.includes(enemyName[0]) === true)){
+if((friend.some(name => document.getElementById('select').innerText.includes(name)))||(document.getElementById( 'select' ).innerText.includes(enemyName[0]) === true)){
 
 itemN[itemIntro.indexOf(action[attaker])] -= 1;
 if(itemN[itemIntro.indexOf(action[attaker])] < 1) {
@@ -1235,7 +1252,7 @@ itemIntro.splice( aiful,1 );
 itemE.splice( aiful,1 );
 }
 
-if(document.getElementById( 'select' ).innerText.includes(friend[0]) === true)target[attaker] = friend[decide];
+if(friend.some(name => document.getElementById('select').innerText.includes(name)))target[attaker] = MAry[decide];
 if(document.getElementById( 'select' ).innerText.includes(enemyName[0]) === true)target[attaker] = enemyName[decide];
 sc = false;         decide = 0;
                 y1 = 500;
@@ -1326,8 +1343,8 @@ trun();
 }
 }
 if(selectfun === 3) {
-if((document.getElementById( 'select' ).innerText.includes(friend[0]) === true)||(document.getElementById( 'select' ).innerText.includes(enemyName[0]) === true)){
-if(document.getElementById( 'select' ).innerText.includes(friend[0]) === true)target[attaker] = friend[decide];
+if((friend.some(name => document.getElementById('select').innerText.includes(name)))||(document.getElementById( 'select' ).innerText.includes(enemyName[0]) === true)){
+if(friend.some(name => document.getElementById('select').innerText.includes(name)))target[attaker] = MAry[decide];
 if(document.getElementById( 'select' ).innerText.includes(enemyName[0]) === true)target[attaker] = enemyName[decide];
 sc = false;         decide = 0;
                 y1 = 500;
@@ -1367,7 +1384,7 @@ aiful = 0;
 document.getElementById("select").innerText = null;
 for (let i = 0; aiful < Cfriend; i++) {
 aiful += 1;
-  document.getElementById( 'select' ).innerText += friend[aiful - 1] + "\n";
+  if(friendHp[aiful - 1] > 0)document.getElementById( 'select' ).innerText += friend[aiful - 1] + "\n";
 }
 document.getElementById( 'select2' ).style.display = 'none'; 
 document.getElementById( 'select3' ).style.display = 'none'; 
