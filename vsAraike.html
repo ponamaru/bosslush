@@ -751,11 +751,37 @@ if((fun === 1)&&(document.getElementById("area").innerText === array[nowtext])) 
 document.getElementById( 'cr' ).style.display = 'none';
 nowtext = 5;
 nulltype();
+    if( result ) {
+cutIn();
+setTimeout(() => {
+window.location = 'vsYoto.html';
+}, 1000);
+    }else{
+cutIn();
+setTimeout(() => {
+window.location = 'st.html';
+}, 1000);
+}
 }
 if((fun === 2)&&(document.getElementById("area").innerText === array[nowtext])) {
 document.getElementById( 'cr' ).style.display = 'none';
 nowtext = 6;
 nulltype();
+var result = window.confirm('次のステージに行きますか？');
+    
+    if( result ) {
+cutIn();
+setTimeout(() => {
+window.location = 'vsAraike.html';
+}, 1000);
+    }else{
+cutIn();
+setTimeout(() => {
+window.location = 'st.html';
+}, 1000);
+}
+
+
 }
 if(fun === 0) {
 if(sc === true) {
@@ -950,6 +976,8 @@ action[attaker] = null;
     document.getElementById("select").innerText = "こうげき";
 document.getElementById("select2").innerText = "スキル";
 document.getElementById("select3").innerText = "アイテム";
+document.getElementById( 'triangleU' ).style.display = 'none';
+document.getElementById( 'triangleD' ).style.display = 'none';
     nowtext = 1;
 aiful = 0;
 array[1] = friend[attaker + aiful] + "はどうする?";
@@ -1156,6 +1184,7 @@ if(selectfun === 3) {
 if(decide > 0) {
 if(y1 < 550) {
 if(!friend.some(name => document.getElementById('select').innerText.includes(name))){
+selectOver -= 1;
 document.getElementById( 'triangleU' ).style.display = 'none';
 document.getElementById( 'triangleD' ).style.display = 'block';
         y1 = 600;
@@ -1192,7 +1221,7 @@ document.getElementById("select").innerText = skillIntro4[decide - 2];
 	if( key_code === 40 ) {
     if(decide === selectOver * 3 - 1) {
 if((friend.some(name => document.getElementById('select').innerText.includes(name)))||(document.getElementById( 'select' ).innerText.includes(enemyName[0]) === true)){}else{
-
+selectOver += 1;
 document.getElementById( 'triangleU' ).style.display = 'block';
 document.getElementById( 'triangleD' ).style.display = 'none';
                 y1 = 500;
@@ -1250,6 +1279,7 @@ if(selectfun === 4) { //itemselect
 if(decide > 0) {
 if(y1 < 550) {
 if(!friend.some(name => document.getElementById('select').innerText.includes(name))){
+selectOver -= 1;
 document.getElementById( 'triangleU' ).style.display = 'none';
 document.getElementById( 'triangleD' ).style.display = 'block';
         y1 = 600;
@@ -1269,6 +1299,7 @@ document.getElementById("select3").innerText = itemIntro[decide];
 	if( key_code === 40 ) {
     if(decide === selectOver * 3 - 1) {
 if((friend.some(name => document.getElementById('select').innerText.includes(name)))||(document.getElementById( 'select' ).innerText.includes(enemyName[0]) === true)){}else{
+selectOver += 1;
                 y1 = 500;
 document.getElementById( 'triangleU' ).style.display = 'block';
 document.getElementById( 'triangleD' ).style.display = 'none';
