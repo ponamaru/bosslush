@@ -262,10 +262,6 @@ transform:rotate(90deg);
     top: 70;
 	left: 10;
 }
-body {
-  background-image: url("gim.png");
-  background-size: cover;
-}
 #enemy1 {
     	position: absolute;
     top: 120;
@@ -353,6 +349,10 @@ display: none;
     top: 0;
 	left: 0;
 }
+body {
+  background-image: url("English room.png");
+  background-size: cover;
+}
     </style>
 </head>
 <audio id="bgmT" src="dorakue9.m4a"></audio><audio id="bgmT2" src="効果音ラボ/決定ボタンを押す2.mp3"></audio>
@@ -394,20 +394,20 @@ display: none;
 
 <div id="blackSquare"></div>
 <script>
-var friendAttack = [10,20,20,20];
-var enemyAttack = [13,20,20,20];
+var friendAttack = [18,25,20,20];
+var enemyAttack = [30,20,20,20];
 var selectfun = 0;
 var skillIntro = ["スキル1","スキル2"];
-var skillE = ["消a","消費mp:5","消費mp:5","消費mp:5","消費mp:5","消費mp:5",null];
-var skillEffect = ["HP吸収","回復","敵の攻撃力ダウン","敵1体にこうげき","味方の攻撃力アップ","消費mp:5",null];
+var skillE = ["味方の一人を回復する　消費mp:5","味方の防御力を上げる　消費mp:5","消費mp:5","消費mp:5","消費mp:5","消費mp:5",null];
+var skillEffect = ["回復","防御力上げ","敵の攻撃力ダウン","敵1体にこうげき","味方の攻撃力アップ","消費mp:5",null];
 var skillMp = [5,5,5,5,5,5,null];
 var skillEffectL = [0,0,0,0];
 var skillEffectB = [20,20,20,20];
 var skillgifs = [null,null,"car.png","59.png","car.png","59.png"];
 
 var skillIntro2 = ["スキル7","スキル8"];
-var skillE2 = ["消費mp:5","消費mp:5","消費mp:5","消費mp:5","消費mp:5","スマホ取り上げ　mp:5",null];
-var skillEffect2 = ["回復","敵1体にこうげき","HP吸収","敵の攻撃力ダウン","味方の攻撃力アップ","消費mp:5",null];
+var skillE2 = ["敵一体に小攻撃　消費mp:5","味方の攻撃力を上げる　消費mp:5","消費mp:5","消費mp:5","消費mp:5","スマホ取り上げ　mp:5",null];
+var skillEffect2 = ["敵1体にこうげき","回復","HP吸収","敵の攻撃力ダウン","味方の攻撃力アップ","消費mp:5",null];
 var skillMp2 = [5,5,5,5,5,5,null];
 var skillEffectL2 = [0,10,0,0];
 var skillEffectB2 = [20,20,20,20];
@@ -435,29 +435,28 @@ var skillsound = [
 ["効果音ラボ/大パンチ.mp3","効果音ラボ/小パンチ.mp3","効果音ラボ/小パンチ.mp3","効果音ラボ/小パンチ.mp3","効果音ラボ/小パンチ.mp3"]];
 skillgifC = [skillgifs,skillgifs2,skillgifs3,skillgifs4]
 var itemIntro = ["アイテム1","アイテム2","アイテム3"];
-var itemN = [3,3,2,3,3,3,null];
+var itemN = [5,8,6,3,3,3,null];
 var itemE = ["hpを回復","mp回復","敵1体に攻撃","効果なし","効果なし","効果なし",null];
 var target = ["","","",""]
 var decide = 0;
 var nowtext = 0;
 var array = ["敵が現れた","どうする?","どうする?","行動した","たかしは","ゲームオーバー","勝利した"];
-var enemyName = ["ヨウト",null,null,null];
-var enemyHp = [100,null,null,null];
+var enemyName = ["新田",null,null,null];
+var enemyHp = [150,null,null,null];
 var enemyId = ["enemy1","enemy2","enemy3",null];
 var y1 = 500;
 var selectOver = 1;
 var attaker = 0; var sc = false;
 var action = [null,null,null,null];
 var friend = ["シンス","ユウガ","bob","uh"];
-var friendHp = [50,35,100,100];
-var friendMp = [50,40,50,50];
-var friendHb = [50,35,100,100];
+var friendHp = [80,65,100,100];
+var friendMp = [65,80,50,50];
+var friendHb = [];
 var friendMb = [];
-var friendHb = [50,35,100,100];
 friendMb = [friendMp[0],friendMp[1],friendMp[2],friendMp[3]];
 friendHb = [friendHp[0],friendHp[1],friendHp[2],friendHp[3]];
 var crI = ["Shinth.png","Yuga2.png","black.png","目.png"];
-var enemyIc = ["Yoto.png","Slime_JE1.png","Slime_JE1.png",null];
+var enemyIc = ["Araike.png","Slime_JE1.png","Slime_JE1.png",null];
 var attackE = 0;
 var fun = 0;
 var random = Math.floor( Math.random() * 31 ) + 0;
@@ -469,7 +468,7 @@ var aiOver = 0;
 var bgm = false;
 var bgmT = ["dorakue9.m4a"];
 const nC = document.getElementById("area").innerText.replace(/\\n/g, "\n");  
-var enemyAction = ["こうげき","全員にこうげき"];
+var enemyAction = ["こうげき","全員にこうげき","攻撃力ダウンこうげき"];
 var enemyAction2 = ["こうげき","攻撃力ダウン"];
 var enemyAction3 = ["こうげき","攻撃力ダウン"];
 var friendGuard = [7,4,null,null];
@@ -1731,7 +1730,7 @@ if(random < 0)random = 0;
     for (let i = 0; i < Cfriend; i++) {
             if(friendHp[i] < 1)i += 1;
         if (friendHp[i] > 0) { 
-            random = Math.floor(Math.random() * enemyAttack[attackE] + 1);
+            random = Math.floor(Math.random() * enemyAttack[attackE - 1] + 1);
             friendHp[i] -= random;
             array[4] += "\n" + friend[i] + "に" + random + "ダメージ"; 
             
@@ -1756,6 +1755,7 @@ i += 1;
 }
 if(Cfriend < 1) fun = 1;
 }
+
 </script>
 
 </html>
