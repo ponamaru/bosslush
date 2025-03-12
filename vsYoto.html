@@ -714,6 +714,32 @@ document.getElementById( 'triangleD' ).style.top = 650;
 document.getElementById( 'triangleD' ).style.left = 650;
 document.getElementById( 'triangleU' ).style.display = 'none';
 document.getElementById( 'triangleD' ).style.display = 'none';
+var seiGi = false;
+addEventListener( "keyup", mR);
+
+function mR (){
+var key_code = event.keyCode;
+	if( key_code === 90 ) {
+if(seiGi === "C"){
+seiGi = false;
+cutIn();
+setTimeout(() => {
+if(decide === 0)window.location = 'vsAraike.html';
+if(decide === 1)window.location = 'vsYoto.html';
+if(decide === 2)window.location = 'st.html';
+}, 1000);
+
+}
+if(seiGi === "GO"){
+seiGi = false;
+cutIn();
+setTimeout(() => {
+if(decide === 0)window.location = 'vsYoto.html';
+if(decide === 1)window.location = 'st.html';
+}, 1000);
+}
+}
+}
 
 addEventListener( "keydown", zx);
 function zx() {
@@ -750,39 +776,41 @@ document.getElementById( 'triangleU' ).style.display = 'none';
 document.getElementById( 'triangleD' ).style.display = 'none';
 if((fun === 1)&&(document.getElementById("area").innerText === array[nowtext])) {
 document.getElementById( 'cr' ).style.display = 'none';
+decide = 0;
 nowtext = 5;
+if(!seiGi === "GO"){
 nulltype();
-    if( result ) {
-cutIn();
-setTimeout(() => {
-window.location = 'vsYoto.html';
-}, 1000);
-    }else{
-cutIn();
-setTimeout(() => {
-window.location = 'st.html';
-}, 1000);
 }
-}
+setTimeout(() => {
+seiGi = "GO";
+}, 1000);
+    document.getElementById( 'area' ).style.top = 400;
+selectblock();
+    y1 = 500;
+    document.getElementById( 'triangle' ).style.top = y1;
+    document.getElementById("select").innerText = "コンティニュー";
+document.getElementById("select2").innerText = "タイトル";
+document.getElementById("select3").innerText = "";
+selects = 2;
+    }
 if((fun === 2)&&(document.getElementById("area").innerText === array[nowtext])) {
 document.getElementById( 'cr' ).style.display = 'none';
 nowtext = 6;
+if(!seiGi === "C"){
 nulltype();
-var result = window.confirm('次のステージに行きますか？');
-    
-    if( result ) {
-cutIn();
-setTimeout(() => {
-window.location = 'vsAraike.html';
-}, 1000);
-    }else{
-cutIn();
-setTimeout(() => {
-window.location = 'st.html';
-}, 1000);
 }
-
-
+setTimeout(() => {
+seiGi = "C";
+}, 1000);
+selectblock();
+selects = 3;
+decide = 0;
+    document.getElementById( 'area' ).style.top = 400;
+                y1 = 500;
+    document.getElementById( 'triangle' ).style.top = y1;
+    document.getElementById("select").innerText = "次のステージへ";
+document.getElementById("select2").innerText = "コンティニュー";
+document.getElementById("select3").innerText = "タイトル";
 }
 if(fun === 0) {
 if(sc === true) {
@@ -792,6 +820,7 @@ skillItemQTE();
 if(sc === true) {
     if(selectfun === 2){
 action[attaker] = enemyName[decide];
+
 }
     if(selectfun === 4){
 action[attaker] = itemIntro[decide];
@@ -976,6 +1005,8 @@ action[attaker] = null;
     document.getElementById("select").innerText = "こうげき";
 document.getElementById("select2").innerText = "スキル";
 document.getElementById("select3").innerText = "アイテム";
+document.getElementById( 'triangleU' ).style.display = 'none';
+document.getElementById( 'triangleD' ).style.display = 'none';
     nowtext = 1;
 aiful = 0;
 array[1] = friend[attaker + aiful] + "はどうする?";
@@ -988,7 +1019,6 @@ sc = false;
     }
 
 }
-
 function trun() {
 if(attaker < Cfriend){
 aiful6 = false;
@@ -1619,7 +1649,7 @@ if(attaker === 3)friendMp[attaker] -= skillMp4[skillIntro4.indexOf(action[attake
 }
 }
 if(action[attaker].includes("アイテム3")){ 
-random = Math.floor( Math.random() * 51 ) + 20;
+random = Math.floor( Math.random() * 30 ) + 3;
 random -= enemyGuard[enemyName.indexOf(target[attaker])];
 if(random < 0)random = 0;
 damageEa();
@@ -1719,13 +1749,13 @@ audio2.src = "小パンチ.mp3";
 audio2.play();
 }
 if(enemySkillS[attackE - 1][random3] === "攻撃力ダウン"){
-friendAttack[random2] -= 3;
+friendAttack[random2] -= 5;
 array[4] = enemyName[attackE - 1] + "は攻撃力を下げた\n" + friend[random2] + "の攻撃力が下がった"; 
 if(friendHp[random2] < 1) Cfriend -= 1;
 if(Cfriend < 1) fun = 1;
 }
 if(enemySkillS[attackE - 1][random3] === "防御力ダウン"){
-friendGuard[random2] -= 3;
+friendGuard[random2] -= 5;
 array[4] = enemyName[attackE - 1] + "は防御力を下げた\n" + friend[random2] + "の防御力が下がった"; 
 if(friendHp[random2] < 1) Cfriend -= 1;
 if(Cfriend < 1) fun = 1;
@@ -1734,7 +1764,7 @@ if(enemySkillS[attackE - 1][random3] === "攻撃力ダウンこうげき"){
 random -= friendGuard[random2];
 if(random < 0)random = 0;
 friendHp[random2] -= random;
-friendAttack[random2] -= 5;
+friendAttack[random2] -= 7;
 array[4] = enemyName[attackE - 1] + "は攻撃力が下がる攻撃をした\n" 
 + friend[random2] + "に" + random + "ダメージ" + "\n" + friend[random2] + "の攻撃力が下がった"; 
 if(friendHp[random2] < 1) Cfriend -= 1;
@@ -1744,7 +1774,7 @@ if(enemySkillS[attackE - 1][random3] === "防御力ダウンこうげき"){
 random -= friendGuard[random2];
 if(random < 0)random = 0;
 friendHp[random2] -= random;
-friendGuard[random2] -= 5;
+friendGuard[random2] -= 7;
 array[4] = enemyName[attackE - 1] + "は防御力が下がる攻撃をした\n"
 + friend[random2] + "に" + random + "ダメージ" + "\n" + friend[random2] + "の防御力が下がった"; 
 if(friendHp[random2] < 1) Cfriend -= 1;
