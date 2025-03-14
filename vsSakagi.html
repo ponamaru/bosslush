@@ -394,23 +394,23 @@ body {
 
 <div id="blackSquare"></div>
 <script>
-var friendAttack = [20,25,20,20];
-var enemyAttack = [30,20,20,20];
+var friendAttack = [30,43,20,20];
+var enemyAttack = [40,20,20,20];
 var selectfun = 0;
 var skillIntro = ["スキル1","スキル2"];
 var skillE = ["味方の一人を回復する　消費mp:5","味方の防御力を上げる　消費mp:5","消費mp:5","消費mp:5","消費mp:5","消費mp:5",null];
 var skillEffect = ["回復","防御力上げ","敵の攻撃力ダウン","敵1体にこうげき","味方の攻撃力アップ","消費mp:5",null];
 var skillMp = [5,5,5,5,5,5,null];
-var skillEffectL = [0,0,0,0];
-var skillEffectB = [20,20,20,20];
+var skillEffectL = [30,30,0,0];
+var skillEffectB = [50,43,20,20];
 var skillgifs = [null,null,"car.png","59.png","car.png","59.png"];
 
 var skillIntro2 = ["スキル7","スキル8"];
 var skillE2 = ["敵一体に小攻撃　消費mp:5","味方の攻撃力を上げる　消費mp:5","消費mp:5","消費mp:5","消費mp:5","スマホ取り上げ　mp:5",null];
 var skillEffect2 = ["敵1体にこうげき","攻撃力上げ","HP吸収","敵の攻撃力ダウン","味方の攻撃力アップ","消費mp:5",null];
 var skillMp2 = [5,5,5,5,5,5,null];
-var skillEffectL2 = [0,10,0,0];
-var skillEffectB2 = [20,20,20,20];
+var skillEffectL2 = [30,10,0,0];
+var skillEffectB2 = [50,43,20,20];
 var skillgifs2 = [null,null,"car.png","59.png","car.png","59.png"];
 
 var skillIntro3 = ["スキル13","スキル14","スキル15","スキル16","スキル17","スキル18",null];
@@ -434,23 +434,23 @@ var skillsound = [
 ["効果音ラボ/大パンチ.mp3","効果音ラボ/小パンチ.mp3","効果音ラボ/小パンチ.mp3","効果音ラボ/小パンチ.mp3","効果音ラボ/小パンチ.mp3"],
 ["効果音ラボ/大パンチ.mp3","効果音ラボ/小パンチ.mp3","効果音ラボ/小パンチ.mp3","効果音ラボ/小パンチ.mp3","効果音ラボ/小パンチ.mp3"]];
 skillgifC = [skillgifs,skillgifs2,skillgifs3,skillgifs4]
-var itemIntro = ["アイテム1","アイテム2","アイテム3"];
-var itemN = [5,8,6,3,3,3,null];
+var itemIntro = ["アイテム1","アイテム2","アイテム3","アイテム4","アイテム5"];
+var itemN = [10,12,4,5,4,3,null];
 var itemE = ["hpを回復","mp回復","敵1体に攻撃","効果なし","効果なし","効果なし",null];
 var target = ["","","",""]
 var decide = 0;
 var nowtext = 0;
 var array = ["敵が現れた","どうする?","どうする?","行動した","たかしは","ゲームオーバー","勝利した"];
 var enemyName = ["坂木",null,null,null];
-var enemyHp = [150,null,null,null];
+var enemyHp = [250,null,null,null];
 var enemyId = ["enemy1","enemy2","enemy3",null];
 var y1 = 500;
 var selectOver = 1;
 var attaker = 0; var sc = false;
 var action = [null,null,null,null];
 var friend = ["シンス","ユウガ","bob","uh"];
-var friendHp = [80,65,100,100];
-var friendMp = [65,80,50,50];
+var friendHp = [120,84,100,100];
+var friendMp = [90,60,50,50];
 var friendHb = [];
 var friendMb = [];
 friendMb = [friendMp[0],friendMp[1],friendMp[2],friendMp[3]];
@@ -832,7 +832,7 @@ sc = false;         decide = 0;
                 y1 = 500;
     document.getElementById( 'triangle' ).style.top = y1;
 if(attaker < Cfriend - 1){
-
+selectOver = 1;
 attaker += 1;
     document.getElementById("select").innerText = "こうげき";
 document.getElementById("select2").innerText = "スキル";
@@ -970,6 +970,7 @@ array[1] = friend[attaker + aiful] + "はどうする?";
 document.getElementById("select2").innerText = "スキル";
 document.getElementById("select3").innerText = "アイテム";
 selectblock();
+    selectOver = 1;
 }
 if(selectfun === 6){trun();} //攻撃反映、すでに攻撃対象がタヒんでいる場合
 }
@@ -1005,6 +1006,7 @@ document.getElementById("select2").innerText = "スキル";
 document.getElementById("select3").innerText = "アイテム";
 document.getElementById( 'triangleU' ).style.display = 'none';
 document.getElementById( 'triangleD' ).style.display = 'none';
+        selectOver = 1;
     nowtext = 1;
 aiful = 0;
 array[1] = friend[attaker + aiful] + "はどうする?";
@@ -1406,6 +1408,7 @@ attaker += 1;
 document.getElementById("select2").innerText = "スキル";
 document.getElementById("select3").innerText = "アイテム";
     nowtext = 1;
+    selectOver = 1;
 aiful6 = false;
 for (let i = 0; i < 4; i++) {
 if(friendHp[i] > 0) {
@@ -1475,6 +1478,7 @@ array[1] = friend[attaker + aiful] + "はどうする?";
     document.getElementById("select").innerText = "こうげき";
 document.getElementById("select2").innerText = "スキル";
 document.getElementById("select3").innerText = "アイテム";
+    selectOver = 1;
     nowtext = 1;
     nulltype();
     document.getElementById( 'area' ).style.top = 400;
@@ -1506,6 +1510,7 @@ array[1] = friend[attaker] + "はどうする?";
     document.getElementById("select").innerText = "こうげき";
 document.getElementById("select2").innerText = "スキル";
 document.getElementById("select3").innerText = "アイテム";
+    selectOver = 1;
     nowtext = 1;
     nulltype();
     document.getElementById( 'area' ).style.top = 400;
@@ -1577,6 +1582,7 @@ attaker += 1;
     document.getElementById("select").innerText = "こうげき";
 document.getElementById("select2").innerText = "スキル";
 document.getElementById("select3").innerText = "アイテム";
+    selectOver = 1;
     nowtext = 1;
 array[1] = friend[attaker] + "はどうする?";
     nulltype();
@@ -1802,7 +1808,7 @@ if(enemySkillS[attackE - 1][random3] === "攻撃力ダウンこうげき"){
 random -= friendGuard[random2];
 if(random < 0)random = 0;
 friendHp[random2] -= random;
-friendAttack[random2] -= 7;
+friendAttack[random2] -= 12;
 array[4] = enemyName[attackE - 1] + "は攻撃力が下がる攻撃をした\n" 
 + friend[random2] + "に" + random + "ダメージ" + "\n" + friend[random2] + "の攻撃力が下がった"; 
 if(friendHp[random2] < 1) Cfriend -= 1;
@@ -1812,7 +1818,7 @@ if(enemySkillS[attackE - 1][random3] === "防御力ダウンこうげき"){
 random -= friendGuard[random2];
 if(random < 0)random = 0;
 friendHp[random2] -= random;
-friendGuard[random2] -= 7;
+friendGuard[random2] -= 12;
 array[4] = enemyName[attackE - 1] + "は防御力が下がる攻撃をした\n"
 + friend[random2] + "に" + random + "ダメージ" + "\n" + friend[random2] + "の防御力が下がった"; 
 if(friendHp[random2] < 1) Cfriend -= 1;
