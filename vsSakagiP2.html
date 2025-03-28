@@ -262,14 +262,10 @@ transform:rotate(90deg);
     top: 70;
 	left: 10;
 }
-body {
-  background-image: url("gim.png");
-  background-size: cover;
-}
 #enemy1 {
     	position: absolute;
     top: 120;
-	left: 400;
+	left: 340;
 width: 700;
 }
 #enemy2 {
@@ -353,6 +349,7 @@ display: none;
     top: 0;
 	left: 0;
 }
+
     </style>
 </head>
 <audio id="bgmT" src="dorakue9.m4a"></audio><audio id="bgmT2" src="効果音ラボ/決定ボタンを押す2.mp3"></audio>
@@ -394,23 +391,23 @@ display: none;
 
 <div id="blackSquare"></div>
 <script>
-var friendAttack = [10,20,20,20];
-var enemyAttack = [13,20,20,20];
+var friendAttack = [20,25,20,20];
+var enemyAttack = [45,20,20,20];
 var selectfun = 0;
 var skillIntro = ["スキル1","スキル2"];
 var skillE = ["味方の一人を回復する　消費mp:5","味方の防御力を上げる　消費mp:5","消費mp:5","消費mp:5","消費mp:5","消費mp:5",null];
 var skillEffect = ["回復","防御力上げ","敵の攻撃力ダウン","敵1体にこうげき","味方の攻撃力アップ","消費mp:5",null];
 var skillMp = [3,9,5,5,5,5,null];
-var skillEffectL = [0,0,0,0];
-var skillEffectB = [20,20,20,20];
+var skillEffectL = [15,15,0,0];
+var skillEffectB = [30,30,20,20];
 var skillgifs = [null,null,"car.png","59.png","car.png","59.png"];
 
 var skillIntro2 = ["スキル7","スキル8"];
 var skillE2 = ["敵一体に小攻撃　消費mp:5","味方の攻撃力を上げる　消費mp:5","消費mp:5","消費mp:5","消費mp:5","スマホ取り上げ　mp:5",null];
 var skillEffect2 = ["敵1体にこうげき","攻撃力上げ","HP吸収","敵の攻撃力ダウン","味方の攻撃力アップ","消費mp:5",null];
 var skillMp2 = [5,8,5,5,5,5,null];
-var skillEffectL2 = [0,10,0,0];
-var skillEffectB2 = [20,20,20,20];
+var skillEffectL2 = [15,10,0,0];
+var skillEffectB2 = [30,20,20,20];
 var skillgifs2 = [null,null,"car.png","59.png","car.png","59.png"];
 
 var skillIntro3 = ["スキル13","スキル14","スキル15","スキル16","スキル17","スキル18",null];
@@ -435,29 +432,28 @@ var skillsound = [
 ["効果音ラボ/大パンチ.mp3","効果音ラボ/小パンチ.mp3","効果音ラボ/小パンチ.mp3","効果音ラボ/小パンチ.mp3","効果音ラボ/小パンチ.mp3"]];
 skillgifC = [skillgifs,skillgifs2,skillgifs3,skillgifs4]
 var itemIntro = ["アイテム1","アイテム2","アイテム3"];
-var itemN = [3,3,2,3,3,3,null];
+var itemN = [5,8,6,3,3,3,null];
 var itemE = ["hpを回復","mp回復","敵1体に攻撃","効果なし","効果なし","効果なし",null];
 var target = ["","","",""]
 var decide = 0;
 var nowtext = 0;
 var array = ["敵が現れた","どうする?","どうする?","行動した","たかしは","ゲームオーバー","勝利した"];
-var enemyName = ["ヨウト",null,null,null];
-var enemyHp = [100,null,null,null];
+var enemyName = ["坂木",null,null,null];
+var enemyHp = [250,null,null,null];
 var enemyId = ["enemy1","enemy2","enemy3",null];
 var y1 = 500;
 var selectOver = 1;
 var attaker = 0; var sc = false;
 var action = [null,null,null,null];
 var friend = ["シンス","ユウガ","bob","uh"];
-var friendHp = [50,35,100,100];
-var friendMp = [50,40,50,50];
-var friendHb = [50,35,100,100];
+var friendHp = [100,72,100,100];
+var friendMp = [80,110,50,50];
+var friendHb = [];
 var friendMb = [];
-var friendHb = [50,35,100,100];
 friendMb = [friendMp[0],friendMp[1],friendMp[2],friendMp[3]];
 friendHb = [friendHp[0],friendHp[1],friendHp[2],friendHp[3]];
 var crI = ["Shinth.png","Yuga2.png","black.png","目.png"];
-var enemyIc = ["Yoto.png","Slime_JE1.png","Slime_JE1.png",null];
+var enemyIc = ["fall.png","Slime_JE1.png","Slime_JE1.png",null];
 var attackE = 0;
 var fun = 0;
 var random = Math.floor( Math.random() * 31 ) + 0;
@@ -469,7 +465,7 @@ var aiOver = 0;
 var bgm = false;
 var bgmT = ["dorakue9.m4a"];
 const nC = document.getElementById("area").innerText.replace(/\\n/g, "\n");  
-var enemyAction = ["こうげき","全員にこうげき"];
+var enemyAction = ["こうげき","全員にこうげき","攻撃力ダウンこうげき","防御力ダウンこうげき"];
 var enemyAction2 = ["こうげき","攻撃力ダウン"];
 var enemyAction3 = ["こうげき","攻撃力ダウン"];
 var friendGuard = [7,4,null,null];
@@ -627,7 +623,7 @@ enemyId.splice( aiful,1 );
     }
 }
 function carsol() {
-document.getElementById("fun").innerText = decide + ","+ target;
+document.getElementById("fun").innerText = friendGuard + "A" + friendAttack;
 if(selectfun === 1)document.getElementById( 'cr' ).style.display = 'block';
 if(document.getElementById("area").innerText.includes(friend[3]) === true)document.getElementById( 'cr' ).src = crI[3];
 if(document.getElementById("area").innerText.includes(friend[2]) === true)document.getElementById( 'cr' ).src = crI[2];
@@ -724,8 +720,8 @@ if(seiGi === "C"){
 seiGi = false;
 cutIn();
 setTimeout(() => {
-if(decide === 0)window.location = 'vsAraike.html';
-if(decide === 1)window.location = 'vsYoto.html';
+if(decide === 0)window.location = 'vsYuri.html';
+if(decide === 1)window.location = 'vsSakagi.html';
 if(decide === 2)window.location = 'st.html';
 }, 1000);
 
@@ -734,7 +730,7 @@ if(seiGi === "GO"){
 seiGi = false;
 cutIn();
 setTimeout(() => {
-if(decide === 0)window.location = 'vsYoto.html';
+if(decide === 0)window.location = 'vsSakagi.html';
 if(decide === 1)window.location = 'st.html';
 }, 1000);
 }
@@ -778,9 +774,9 @@ if((fun === 1)&&(document.getElementById("area").innerText === array[nowtext])) 
 document.getElementById( 'cr' ).style.display = 'none';
 decide = 0;
 nowtext = 5;
-if(!seiGi === "GO"){
+
 nulltype();
-}
+
 setTimeout(() => {
 seiGi = "GO";
 }, 1000);
@@ -796,9 +792,8 @@ selects = 2;
 if((fun === 2)&&(document.getElementById("area").innerText === array[nowtext])) {
 document.getElementById( 'cr' ).style.display = 'none';
 nowtext = 6;
-if(!seiGi === "C"){
+
 nulltype();
-}
 setTimeout(() => {
 seiGi = "C";
 }, 1000);
@@ -1019,7 +1014,9 @@ sc = false;
     }
 
 }
+
 function trun() {
+document.getElementById( 'cr' ).style.display = "none"
 if(attaker < Cfriend){
 aiful6 = false;
 for (let i = 0; i < 4; i++) {
@@ -1072,7 +1069,7 @@ attaker += 1;
 nowtext = 4;
 }else{
 if(attackE < Cenemy){
-random = Math.floor( Math.random() * enemyAttack[attackE] + 1 ) + 0;
+random = Math.floor( Math.random() * enemyAttack[attackE] + 1 ) + 3;
 random2 = Math.floor( Math.random() * Cfriend) + 0;
 attackE += 1;
 if(friendHp[random2] < 1){
@@ -1110,6 +1107,7 @@ array[1] = friend[attaker + aiful] + "はどうする?";
 document.getElementById("select2").innerText = "スキル";
 document.getElementById("select3").innerText = "アイテム";
 selectblock();
+    if (Cfriend -1 < attaker) fun = 1;
 }
 }
 nulltype();
@@ -1140,6 +1138,18 @@ type();
 var selects = 0;
 function b () {
 var key_code = event.keyCode;
+if((fun === 1)||(fun === 2)) {
+if(( key_code === 38 )&&(0 < decide)){
+y1 -= 50;
+document.getElementById( 'triangle' ).style.top = y1; 
+        decide -= 1;
+}
+if(( key_code === 40 )&&(selects - 1 > decide)){
+y1 += 50;
+document.getElementById( 'triangle' ).style.top = y1; 
+        decide += 1;
+}
+}
 if(((selectfun === 1)||(selectfun === 2)||(selectfun === 3)||(selectfun === 4))&&((key_code === 40)&&(selects > decide))
 ||((selectfun === 1)||(selectfun === 2)||(selectfun === 3)||(selectfun === 4))&&((key_code === 38)&&(decide > 0))){
 if(( key_code === 40 )&&((friend.some(name => document.getElementById('select').innerText.includes(name)))||(document.getElementById( 'select' ).innerText.includes(enemyName[0]) === true))) {
@@ -1366,7 +1376,7 @@ document.getElementById( 'triangle' ).style.top = y1;
 }
 }
 
-
+var Mps = [skillMp,skillMp2,skillMp3,skillMp4];
 
 
 function skillItemQTE () {
@@ -1510,9 +1520,14 @@ attacker = 0;
 trun();
 }
 }else{
-
+if(friendMp[attaker] > Mps[attaker][decide] - 1) {
+if(attaker === 0)action[attaker] = skillIntro[decide];
+if(attaker === 1)action[attaker] = skillIntro2[decide];
+if(attaker === 2)action[attaker] = skillIntro3[decide];
+if(attaker === 3)action[attaker] = skillIntro4[decide];
+    }
 if(((attaker === 0)&&(skillEffect[decide].includes("回復") === true))||((attaker === 1)&&(skillEffect2[decide].includes("回復") === true))||((attaker === 2)&&(skillEffect3[decide].includes("回復") === true))||((attaker === 3)&&(skillEffect4[decide].includes("回復") === true))){ 
-if(friendMp[attaker] > 4) {
+if(friendMp[attaker] > Mps[attaker][decide] - 1) {
 if(attaker === 0)action[attaker] = skillIntro[decide];
 if(attaker === 1)action[attaker] = skillIntro2[decide];
 if(attaker === 2)action[attaker] = skillIntro3[decide];
@@ -1533,7 +1548,7 @@ document.getElementById( 'select3' ).style.display = 'none';
 }
 }else{
 if(((attaker === 0)&&(skillEffect[decide].includes("敵1体にこうげき") === true))||((attaker === 1)&&(skillEffect2[decide].includes("敵1体にこうげき") === true))||((attaker === 2)&&(skillEffect3[decide].includes("敵1体にこうげき") === true))||((attaker === 3)&&(skillEffect4[decide].includes("敵1体にこうげき") === true))){ 
-if(friendMp[attaker] > 4) {
+if(friendMp[attaker] > Mps[attaker][decide] + 1) {
 if(attaker === 0)action[attaker] = skillIntro[decide];
 if(attaker === 1)action[attaker] = skillIntro2[decide];
 if(attaker === 2)action[attaker] = skillIntro3[decide];
@@ -1609,7 +1624,30 @@ if((skillIntro.includes(action[attaker]) === true)||(skillIntro2.includes(action
 
 skillDD();
 
+if(((attaker === 0)&&(skillEffect[skillIntro.indexOf(action[attaker])].includes("防御力上げ") === true))||((attaker === 1)&&(skillEffect2[skillIntro2.indexOf(action[attaker])].includes("防御力上げ") === true))||((attaker === 2)&&(skillEffect3[skillIntro3.indexOf(action[attaker])].includes("防御力上げ") === true))||((attaker === 3)&&(skillEffect4[skillIntro4.indexOf(action[attaker])].includes("防御力上げ") === true))){ 
+    array[4] += "\n" + "全員の防御力が上がった";
+for (let i = 0; i < 4; i++) {
+friendGuard[i] += 6;
+    }
+if(attaker === 0)friendMp[attaker] -= skillMp[skillIntro.indexOf(action[attaker])];
+if(attaker === 1)friendMp[attaker] -= skillMp2[skillIntro2.indexOf(action[attaker])];
+if(attaker === 2)friendMp[attaker] -= skillMp3[skillIntro3.indexOf(action[attaker])];
+if(attaker === 3)friendMp[attaker] -= skillMp4[skillIntro4.indexOf(action[attaker])];
+}
+
+if(((attaker === 0)&&(skillEffect[skillIntro.indexOf(action[attaker])].includes("攻撃力上げ") === true))||((attaker === 1)&&(skillEffect2[skillIntro2.indexOf(action[attaker])].includes("攻撃力上げ") === true))||((attaker === 2)&&(skillEffect3[skillIntro3.indexOf(action[attaker])].includes("攻撃力上げ") === true))||((attaker === 3)&&(skillEffect4[skillIntro4.indexOf(action[attaker])].includes("攻撃力上げ") === true))){ 
+    array[4] += "\n" + "全員の攻撃力が上がった";
+for (let i = 0; i < 4; i++) {
+friendAttack[i] += 6;
+    }
+if(attaker === 0)friendMp[attaker] -= skillMp[skillIntro.indexOf(action[attaker])];
+if(attaker === 1)friendMp[attaker] -= skillMp2[skillIntro2.indexOf(action[attaker])];
+if(attaker === 2)friendMp[attaker] -= skillMp3[skillIntro3.indexOf(action[attaker])];
+if(attaker === 3)friendMp[attaker] -= skillMp4[skillIntro4.indexOf(action[attaker])];
+}
+
 if(((attaker === 0)&&(skillEffect[skillIntro.indexOf(action[attaker])].includes("敵1体にこうげき") === true))||((attaker === 1)&&(skillEffect2[skillIntro2.indexOf(action[attaker])].includes("敵1体にこうげき") === true))||((attaker === 2)&&(skillEffect3[skillIntro3.indexOf(action[attaker])].includes("敵1体にこうげき") === true))||((attaker === 3)&&(skillEffect4[skillIntro4.indexOf(action[attaker])].includes("敵1体にこうげき") === true))){ 
+
 var skillLB = skillEffectL[attaker] + skillEffectB[attaker];
 random = Math.floor( Math.random() * skillLB ) + skillEffectL[attaker];
 random -= enemyGuard[enemyName.indexOf(target[attaker])];
@@ -1654,6 +1692,15 @@ random -= enemyGuard[enemyName.indexOf(target[attaker])];
 if(random < 0)random = 0;
 damageEa();
 array[4] += "\n" + target[attaker] + "に" + random + "ダメージ";
+if(enemyHp[target[attaker]] < 1){
+    Cenemy -= 1;
+if(Cenemy < 1)fun = 2;
+document.getElementById( enemyId[enemyName.indexOf(target[attaker])] ).style.display = 'none';
+aiful = enemyName.indexOf(action[attaker]);
+enemyName.splice( aiful,1 );
+enemyHp.splice( aiful,1 );
+enemyId.splice( aiful,1 );
+    }
 if(itemN[itemIntro.indexOf(action[attaker])] < 1) {
 aiful = itemIntro.indexOf(action[attaker]);
 itemN.splice( aiful,1 );
@@ -1749,13 +1796,13 @@ audio2.src = "小パンチ.mp3";
 audio2.play();
 }
 if(enemySkillS[attackE - 1][random3] === "攻撃力ダウン"){
-friendAttack[random2] -= 5;
+friendAttack[random2] -= 3;
 array[4] = enemyName[attackE - 1] + "は攻撃力を下げた\n" + friend[random2] + "の攻撃力が下がった"; 
 if(friendHp[random2] < 1) Cfriend -= 1;
 if(Cfriend < 1) fun = 1;
 }
 if(enemySkillS[attackE - 1][random3] === "防御力ダウン"){
-friendGuard[random2] -= 5;
+friendGuard[random2] -= 3;
 array[4] = enemyName[attackE - 1] + "は防御力を下げた\n" + friend[random2] + "の防御力が下がった"; 
 if(friendHp[random2] < 1) Cfriend -= 1;
 if(Cfriend < 1) fun = 1;
@@ -1767,6 +1814,10 @@ friendHp[random2] -= random;
 friendAttack[random2] -= 7;
 array[4] = enemyName[attackE - 1] + "は攻撃力が下がる攻撃をした\n" 
 + friend[random2] + "に" + random + "ダメージ" + "\n" + friend[random2] + "の攻撃力が下がった"; 
+    const audio2 = document.getElementById("bgmT2");
+    audio2.pause();
+    audio2.src = "小パンチ.mp3";
+    audio2.play();
 if(friendHp[random2] < 1) Cfriend -= 1;
 if(Cfriend < 1) fun = 1;
 }
@@ -1777,6 +1828,10 @@ friendHp[random2] -= random;
 friendGuard[random2] -= 7;
 array[4] = enemyName[attackE - 1] + "は防御力が下がる攻撃をした\n"
 + friend[random2] + "に" + random + "ダメージ" + "\n" + friend[random2] + "の防御力が下がった"; 
+    const audio2 = document.getElementById("bgmT2");
+    audio2.pause();
+    audio2.src = "小パンチ.mp3";
+    audio2.play();
 if(friendHp[random2] < 1) Cfriend -= 1;
 if(Cfriend < 1) fun = 1;
 }
@@ -1787,19 +1842,12 @@ if(random < 0)random = 0;
     array[4] = enemyName[attackE - 1] + "は全員に攻撃した";
 
     for (let i = 0; i < Cfriend; i++) {
-            if(friendHp[i] < 1)i += 1;
         if (friendHp[i] > 0) { 
             random = Math.floor(Math.random() * enemyAttack[attackE - 1] + 1);
             friendHp[i] -= random;
             array[4] += "\n" + friend[i] + "に" + random + "ダメージ"; 
             
             if(friendHp[i] < 1) { 
-i += 1;
-        if((friendHp[i] > 0)&&(i < Cfriend)) { 
-            random = Math.floor(Math.random() * enemyAttack[attackE - 1] + 1);
-            friendHp[i] -= random;
-            array[4] += "\n" + friend[i] + "に" + random + "ダメージ"; 
-}
                 Cfriend -= 1;
             }
         }

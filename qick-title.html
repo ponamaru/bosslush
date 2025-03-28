@@ -83,21 +83,19 @@ font-family: serif;
 <div id="square-boder"></div>
 <div id="blackSquare"></div>
 <script>
-var bossIntro = ["aaaaaaa","bbbbb","ccccc"];
-var bossImg = ["car.png","59.png","face.png"];
+var bossName = ["Yoto","Araike","Sakagi","Yuri"];
+var bossIntro = ["aaaaaaa","bbbbb","ccccc","ccccc","ccccc","ccccc","ccccc","ccccc"];
+var bossImg = ["car.png","59.png","face.png","face.png","face.png","face.png","face.png","face.png"];
 var Ty = 100;
 var decide = 1;
 addEventListener( "keydown", x);
 const nC = document.getElementById("selectText").innerText.replace(/\\n/g, "\n");  
 const nC2 = document.getElementById("bossIntro").innerText.replace(/\\n/g, "\n");  
-document.getElementById("selectText").innerText = "xキーでタイトル画面に戻る\nboss1\nboss\nboss";
+document.getElementById("selectText").innerText = "xキーでタイトル画面に戻る";
 
-document.addEventListener('keydown', function() {
-var key_code = event.keyCode;
-if(key_code === 90){
-parent.postMessage('keyplessed', "*");
+for (let i = 0; i < bossName.length; i++) {
+document.getElementById("selectText").innerText +="\n" + bossName[i] ;
 }
-});
 
 function x() {
 var key_code = event.keyCode;
@@ -108,6 +106,12 @@ window.location = 'st.html';
 setTimeout(() => {
 if(decide === 1)window.location = 'vsYoto.html';
 if(decide === 2)window.location = 'vsAraike.html';
+if(decide === 3)window.location = 'vsSakagi.html';
+if(decide === 4)window.location = 'vsYuri.html';
+if(decide === 5)window.location = 'vsSakagiP2.html';
+if(decide === 6)window.location = 'vsAraikeP2.html';
+if(decide === 7)window.location = 'vsYotoP2.html';
+if(decide === 8)window.location = 'vsYuga.html';
 }, 1000);
 af();
 inout();
@@ -121,7 +125,7 @@ decide -= 1;
 }
 }
   if (key_code === 40) {
-if(decide < bossIntro.length){
+if(decide < bossName.length){
 Ty += 50;
 decide += 1;
 }

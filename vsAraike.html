@@ -400,15 +400,15 @@ var selectfun = 0;
 var skillIntro = ["スキル1","スキル2"];
 var skillE = ["味方の一人を回復する　消費mp:5","味方の防御力を上げる　消費mp:5","消費mp:5","消費mp:5","消費mp:5","消費mp:5",null];
 var skillEffect = ["回復","防御力上げ","敵の攻撃力ダウン","敵1体にこうげき","味方の攻撃力アップ","消費mp:5",null];
-var skillMp = [5,5,5,5,5,5,null];
-var skillEffectL = [10,10,0,0];
+var skillMp = [3,9,5,5,5,5,null];
+var skillEffectL = [0,0,0,0];
 var skillEffectB = [20,20,20,20];
 var skillgifs = [null,null,"car.png","59.png","car.png","59.png"];
 
 var skillIntro2 = ["スキル7","スキル8"];
 var skillE2 = ["敵一体に小攻撃　消費mp:5","味方の攻撃力を上げる　消費mp:5","消費mp:5","消費mp:5","消費mp:5","スマホ取り上げ　mp:5",null];
 var skillEffect2 = ["敵1体にこうげき","攻撃力上げ","HP吸収","敵の攻撃力ダウン","味方の攻撃力アップ","消費mp:5",null];
-var skillMp2 = [5,5,5,5,5,5,null];
+var skillMp2 = [5,8,5,5,5,5,null];
 var skillEffectL2 = [0,10,0,0];
 var skillEffectB2 = [20,20,20,20];
 var skillgifs2 = [null,null,"car.png","59.png","car.png","59.png"];
@@ -468,7 +468,7 @@ var aiOver = 0;
 var bgm = false;
 var bgmT = ["dorakue9.m4a"];
 const nC = document.getElementById("area").innerText.replace(/\\n/g, "\n");  
-var enemyAction = ["こうげき","全員にこうげき","攻撃力ダウンこうげき","防御力ダウンこうげき"];
+var enemyAction = ["こうげき","全員にこうげき","攻撃力ダウン","防御力ダウン"];
 var enemyAction2 = ["こうげき","攻撃力ダウン"];
 var enemyAction3 = ["こうげき","攻撃力ダウン"];
 var friendGuard = [7,4,null,null];
@@ -639,7 +639,9 @@ document.getElementById( 'select3' ).style.display = 'none';
 if(document.getElementById("select2").innerText.includes(null)) {
 document.getElementById( 'select2' ).style.display = 'none'; 
     }
-
+for (let i = 0; i < 4; i++) {
+if(friendAttack[i] < 0)friendAttack[i] = 0;
+}
 document.getElementById("hp").innerText = "HP:" + friendHp[0];
 document.getElementById("mp").innerText = "MP:" + friendMp[0];
 document.getElementById("hp2").innerText = "HP:" + friendHp[1];
@@ -1795,26 +1797,6 @@ if(Cfriend < 1) fun = 1;
 if(enemySkillS[attackE - 1][random3] === "防御力ダウン"){
 friendGuard[random2] -= 3;
 array[4] = enemyName[attackE - 1] + "は防御力を下げた\n" + friend[random2] + "の防御力が下がった"; 
-if(friendHp[random2] < 1) Cfriend -= 1;
-if(Cfriend < 1) fun = 1;
-}
-if(enemySkillS[attackE - 1][random3] === "攻撃力ダウンこうげき"){
-random -= friendGuard[random2];
-if(random < 0)random = 0;
-friendHp[random2] -= random;
-friendAttack[random2] -= 7;
-array[4] = enemyName[attackE - 1] + "は攻撃力が下がる攻撃をした\n" 
-+ friend[random2] + "に" + random + "ダメージ" + "\n" + friend[random2] + "の攻撃力が下がった"; 
-if(friendHp[random2] < 1) Cfriend -= 1;
-if(Cfriend < 1) fun = 1;
-}
-if(enemySkillS[attackE - 1][random3] === "防御力ダウンこうげき"){
-random -= friendGuard[random2];
-if(random < 0)random = 0;
-friendHp[random2] -= random;
-friendGuard[random2] -= 7;
-array[4] = enemyName[attackE - 1] + "は防御力が下がる攻撃をした\n"
-+ friend[random2] + "に" + random + "ダメージ" + "\n" + friend[random2] + "の防御力が下がった"; 
 if(friendHp[random2] < 1) Cfriend -= 1;
 if(Cfriend < 1) fun = 1;
 }
