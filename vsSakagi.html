@@ -178,12 +178,12 @@ transform:rotate(90deg);
 #hpmpUI2 {
     	position: absolute;
     top: 400;
-	left: 1300;
+	left: 82%;
     }
 #hpmpUI4 {
     	position: absolute;
     top: 0;
-	left: 1300;
+	left: 82%;
     }
 #hpmpUI3 {
     	position: absolute;
@@ -264,8 +264,8 @@ transform:rotate(90deg);
 }
 #enemy1 {
     	position: absolute;
-    top: 120;
-	left: 340;
+    top: 10%;
+	left: 25%;
 width: 700;
 }
 #enemy2 {
@@ -440,7 +440,18 @@ var itemE = ["hpを回復","mp回復","敵1体に攻撃","効果なし","効果�
 var target = ["","","",""]
 var decide = 0;
 var nowtext = 0;
-var array = ["敵が現れた","どうする?","どうする?","行動した","たかしは","ゲームオーバー","勝利した"];
+var array = ["","どうする?","どうする?","行動した","たかしは","ゲームオーバー","勝利した"];
+app();
+function app () {
+array[0] = "";
+let str = "";
+for (let i = 0; i < Cenemy; i++) {
+  str = str + i;
+if(i > 0)array[0] += "\n"
+array[0] += enemyName[i] + "を倒そう"
+
+}
+}
 var enemyName = ["坂木",null,null,null];
 var enemyHp = [250,null,null,null];
 var enemyId = ["enemy1","enemy2","enemy3",null];
