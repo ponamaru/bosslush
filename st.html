@@ -145,6 +145,7 @@ if(fun === "title"){
 if(decide === 1) {
 setTimeout(() => {
 window.location = 'vsYoto.html';
+if(decide === 1)window.parent.postMessage("b1", "*");
 fun = "battle";
 parent.postMessage('keyplessed', "*");
 }, 1000);

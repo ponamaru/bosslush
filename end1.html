@@ -1,0 +1,39 @@
+<html>
+<head>
+    <style>
+body {
+  background-image: url("aigore.png");
+  background-size: cover;
+}
+html, body {
+    overflow: hidden;
+
+}
+#selectText {
+display: block;
+	  color: #FFF;
+	position: absolute;
+	top: 80%;
+	left: 50%;
+    font-size: 30;
+    background-color:rgba(0,0,0,0.5);
+white-space: pre;
+white-space: pre-wrap;
+white-space: pre-line;
+white-space: break-spaces;
+}
+    </style>
+</head>
+<div id="selectText"></div>
+<script>
+setTimeout(() => {
+ document.getElementById("selectText").innerText = "cresit";
+}, 4000);
+
+setTimeout(() => {
+window.location = 'st.html';
+}, 60000);
+const nC = document.getElementById("selectText").innerText.replace(/\\n/g, "\n");  
+</script>
+
+</html>

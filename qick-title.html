@@ -83,7 +83,7 @@ font-family: serif;
 <div id="square-boder"></div>
 <div id="blackSquare"></div>
 <script>
-var bossName = ["Yoto","Araike","Sakagi","Yuri"];
+var bossName = ["Yoto","Araike","Sakagi","Yuri","Yuga"];
 var bossIntro = ["aaaaaaa","bbbbb","ccccc","ccccc","ccccc","ccccc","ccccc","ccccc"];
 var bossImg = ["car.png","59.png","face.png","face.png","face.png","face.png","face.png","face.png"];
 var Ty = 100;
@@ -108,8 +108,15 @@ if(decide === 1)window.location = 'vsYoto.html';
 if(decide === 2)window.location = 'vsAraike.html';
 if(decide === 3)window.location = 'vsSakagi.html';
 if(decide === 4)window.location = 'vsYuri.html';
-if(decide === 5)window.location = 'vsSakagiP2.html';
-if(decide === 6)window.location = 'vsAraikeP2.html';
+if(decide === 5)window.location = 'vsYuga.html';
+
+if(decide === 1)window.parent.postMessage("b1", "*");
+if(decide === 2)window.parent.postMessage("b2", "*");
+if(decide === 3)window.parent.postMessage("b3", "*");
+if(decide === 4)window.parent.postMessage("b4", "*");
+if(decide === 5)window.parent.postMessage("b5", "*");
+
+if(decide === 6)window.location = 'vsYuga.html';
 if(decide === 7)window.location = 'vsYotoP2.html';
 if(decide === 8)window.location = 'vsYuga.html';
 }, 1000);
@@ -120,13 +127,13 @@ inout();
 
   if (key_code === 38) {
 if(decide > 1){
-Ty -= 50;
+Ty -= 42;
 decide -= 1;
 }
 }
   if (key_code === 40) {
 if(decide < bossName.length){
-Ty += 50;
+Ty += 42;
 decide += 1;
 }
 }

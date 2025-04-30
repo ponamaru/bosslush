@@ -262,15 +262,12 @@ transform:rotate(90deg);
     top: 70;
 	left: 10;
 }
-body {
-  background-image: url("gim.png");
-  background-size: cover;
-}
 #enemy1 {
     	position: absolute;
-    top: 10%;
-	left: 25%;
-width: 700;
+    top: 0;
+	left: 0;
+width: 100%;
+display: none;
 }
 #enemy2 {
     	position: absolute;
@@ -353,6 +350,10 @@ display: none;
     top: 0;
 	left: 0;
 }
+body {
+  background-image: url("赤ちゃん.jpeg");
+  background-size: cover;
+}
     </style>
 </head>
 <audio id="bgmT" src="dorakue9.m4a"></audio><audio id="bgmT2" src="効果音ラボ/決定ボタンを押す2.mp3"></audio>
@@ -394,23 +395,23 @@ display: none;
 
 <div id="blackSquare"></div>
 <script>
-var friendAttack = [10,20,20,20];
-var enemyAttack = [13,20,20,20];
+var friendAttack = [20,25,20,20];
+var enemyAttack = [45,20,20,20];
 var selectfun = 0;
 var skillIntro = ["スキル1","スキル2"];
 var skillE = ["味方の一人を回復する　消費mp:5","味方の防御力を上げる　消費mp:5","消費mp:5","消費mp:5","消費mp:5","消費mp:5",null];
 var skillEffect = ["回復","防御力上げ","敵の攻撃力ダウン","敵1体にこうげき","味方の攻撃力アップ","消費mp:5",null];
 var skillMp = [3,9,5,5,5,5,null];
-var skillEffectL = [0,0,0,0];
-var skillEffectB = [20,20,20,20];
+var skillEffectL = [15,15,0,0];
+var skillEffectB = [30,30,20,20];
 var skillgifs = [null,null,"car.png","59.png","car.png","59.png"];
 
 var skillIntro2 = ["スキル7","スキル8"];
 var skillE2 = ["敵一体に小攻撃　消費mp:5","味方の攻撃力を上げる　消費mp:5","消費mp:5","消費mp:5","消費mp:5","スマホ取り上げ　mp:5",null];
 var skillEffect2 = ["敵1体にこうげき","攻撃力上げ","HP吸収","敵の攻撃力ダウン","味方の攻撃力アップ","消費mp:5",null];
 var skillMp2 = [5,8,5,5,5,5,null];
-var skillEffectL2 = [0,10,0,0];
-var skillEffectB2 = [20,20,20,20];
+var skillEffectL2 = [15,10,0,0];
+var skillEffectB2 = [30,20,20,20];
 var skillgifs2 = [null,null,"car.png","59.png","car.png","59.png"];
 
 var skillIntro3 = ["スキル13","スキル14","スキル15","スキル16","スキル17","スキル18",null];
@@ -435,41 +436,40 @@ var skillsound = [
 ["効果音ラボ/大パンチ.mp3","効果音ラボ/小パンチ.mp3","効果音ラボ/小パンチ.mp3","効果音ラボ/小パンチ.mp3","効果音ラボ/小パンチ.mp3"]];
 skillgifC = [skillgifs,skillgifs2,skillgifs3,skillgifs4]
 var itemIntro = ["アイテム1","アイテム2","アイテム3"];
-var itemN = [3,3,2,3,3,3,null];
+var itemN = [5,8,6,3,3,3,null];
 var itemE = ["hpを回復","mp回復","敵1体に攻撃","効果なし","効果なし","効果なし",null];
 var target = ["","","",""]
 var decide = 0;
 var nowtext = 0;
 var array = ["敵が現れた","どうする?","どうする?","行動した","たかしは","ゲームオーバー","勝利した"];
-var enemyName = ["ヨウト",null,null,null];
-var enemyHp = [100,null,null,null];
+var enemyName = ["ユウガ",null,null,null];
+var enemyHp = [250,null,null,null];
 var enemyId = ["enemy1","enemy2","enemy3",null];
 var y1 = 500;
 var selectOver = 1;
 var attaker = 0; var sc = false;
 var action = [null,null,null,null];
 var friend = ["シンス","ユウガ","bob","uh"];
-var friendHp = [50,35,100,100];
-var friendMp = [50,40,50,50];
-var friendHb = [50,35,100,100];
+var friendHp = [100,72,100,100];
+var friendMp = [80,110,50,50];
+var friendHb = [];
 var friendMb = [];
-var friendHb = [50,35,100,100];
 friendMb = [friendMp[0],friendMp[1],friendMp[2],friendMp[3]];
 friendHb = [friendHp[0],friendHp[1],friendHp[2],friendHp[3]];
 var crI = ["Shinth.png","Yuga2.png","black.png","目.png"];
-var enemyIc = ["Yoto.png","Slime_JE1.png","Slime_JE1.png",null];
+var enemyIc = ["babyMe.png","Slime_JE1.png","Slime_JE1.png",null];
 var attackE = 0;
 var fun = 0;
 var random = Math.floor( Math.random() * 31 ) + 0;
 var random2 = Math.floor( Math.random() * Cfriend ) + 0;
-var Cfriend = 2;
+var Cfriend = 1;
 var Cenemy = 1;
 var aiful = 0;
 var aiOver = 0;
 var bgm = false;
 var bgmT = ["dorakue9.m4a"];
 const nC = document.getElementById("area").innerText.replace(/\\n/g, "\n");  
-var enemyAction = ["こうげき","全員にこうげき"];
+var enemyAction = ["こうげき","全員にこうげき","攻撃力ダウンこうげき","防御力ダウンこうげき"];
 var enemyAction2 = ["こうげき","攻撃力ダウン"];
 var enemyAction3 = ["こうげき","攻撃力ダウン"];
 var friendGuard = [7,4,null,null];
@@ -481,7 +481,7 @@ let str = "";
 for (let i = 0; i < Cenemy; i++) {
   str = str + i;
 if(i > 0)array[0] += "\n"
-array[0] += enemyName[i] + "を倒そう"
+array[0] += enemyName[i] + "が現れた"
 
 }
 }
@@ -542,7 +542,6 @@ document.getElementById("blackSquare").animate(
 );
 }
 
-cutOut();
 
 function preview8(obj) {
 const audio = document.getElementById("bgmT");
@@ -562,7 +561,7 @@ function damageE() {
 const audio2 = document.getElementById("bgmT2");
 audio2.pause();
 audio2.src = "小パンチ.mp3";
-audio2.play();
+;
 const image = document.getElementById(enemyId[enemyName.indexOf(action[attaker])]);
 const image2 = document.getElementById(enemyId[enemyName.indexOf(target[attaker])]);
 if(enemyName.includes(action[attaker]) === true){
@@ -627,7 +626,7 @@ enemyId.splice( aiful,1 );
     }
 }
 function carsol() {
-document.getElementById("fun").innerText = action + ","+ target;
+document.getElementById("fun").innerText = null;
 if(selectfun === 1)document.getElementById( 'cr' ).style.display = 'block';
 if(document.getElementById("area").innerText.includes(friend[3]) === true)document.getElementById( 'cr' ).src = crI[3];
 if(document.getElementById("area").innerText.includes(friend[2]) === true)document.getElementById( 'cr' ).src = crI[2];
@@ -715,31 +714,29 @@ document.getElementById( 'triangleD' ).style.left = 650;
 document.getElementById( 'triangleU' ).style.display = 'none';
 document.getElementById( 'triangleD' ).style.display = 'none';
 var seiGi = false;
-
-addEventListener("keydown",b2);
-
-function b2 (){
-if(!seiGi === false){
-var key_code = event.keyCode;
-  if (key_code === 38) {
-if(decide > 0){
-    y1 -= 50;
-document.getElementById( 'triangle' ).style.top = y1; 
-        decide -= 1;
-}
-}
-  if (key_code === 40) {
-if(decide < 2){
-    y1 += 50;
-document.getElementById( 'triangle' ).style.top = y1; 
-        decide += 1;
-}
-}
-}
-}
-
 addEventListener( "keyup", mR);
+function OSO(){
+document.getElementById("enemy1").animate(
 
+	[
+    { transform: "translateY(0) scale(1)" },   
+    { transform: "translateY(2000px) scale(10)" }
+
+	],
+	{
+		duration: 250,
+	},
+);
+setTimeout(() => {
+document.getElementById("blackSquare").style.opacity = 1;
+document.getElementById("blackSquare").style.display = "block";
+audio2.volume = 0;
+}, 250);
+setTimeout(() => {
+window.location = 'end1.html';
+}, 2000);
+
+}
 function mR (){
 var key_code = event.keyCode;
 	if( key_code === 90 ) {
@@ -747,11 +744,8 @@ if(seiGi === "C"){
 seiGi = false;
 cutIn();
 setTimeout(() => {
-if(decide === 0)window.location = 'vsAraike.html';
-if(decide === 0)window.parent.postMessage("b2", "*");
-if(decide === 1)window.location = 'vsYoto.html';
+if(decide === 0)window.location = 'baby.html';
 if(decide === 2)window.location = 'st.html';
-if(decide === 2)window.parent.postMessage("title", "*");
 }, 1000);
 
 }
@@ -759,9 +753,8 @@ if(seiGi === "GO"){
 seiGi = false;
 cutIn();
 setTimeout(() => {
-if(decide === 0)window.location = 'vsYoto.html';
+if(decide === 0)window.location = 'baby.html';
 if(decide === 1)window.location = 'st.html';
-if(decide === 1)window.parent.postMessage("title", "*");
 }, 1000);
 }
 }
@@ -793,27 +786,26 @@ MAry[NF] = friend[i];
 NF += 1;
 }
 }
-    if((selectfun === 1)||(selectfun === 2)||(selectfun === 4)||(selectfun === 3)){
+if(selectfun === 1){
 const audio2 = document.getElementById("bgmT2");
 audio2.pause();
 audio2.src = "決定ボタンを押す2.mp3";
-audio2.play();
+;
 }
+
 document.getElementById( 'triangleU' ).style.display = 'none';
 document.getElementById( 'triangleD' ).style.display = 'none';
 if((fun === 1)&&(document.getElementById("area").innerText === array[nowtext])) {
+
 document.getElementById( 'cr' ).style.display = 'none';
 decide = 0;
 nowtext = 5;
-if(!seiGi === "GO"){
+
 nulltype();
-}
-setTimeout(() => {
-seiGi = "GO";
-}, 1000);
-    document.getElementById('area').style.top = '65%';
+
+    document.getElementById( 'area' ).style.top = 400;
 selectblock();
-    y1 = 500*65/100;
+    y1 = 500;
     document.getElementById( 'triangle' ).style.top = y1;
     document.getElementById("select").innerText = "コンティニュー";
 document.getElementById("select2").innerText = "タイトル";
@@ -823,16 +815,15 @@ selects = 2;
 if((fun === 2)&&(document.getElementById("area").innerText === array[nowtext])) {
 document.getElementById( 'cr' ).style.display = 'none';
 nowtext = 6;
-if(!seiGi === "C"){
+
 nulltype();
-}
 setTimeout(() => {
 seiGi = "C";
 }, 1000);
 selectblock();
 selects = 3;
 decide = 0;
-    document.getElementById('area').style.top = '65%';
+    document.getElementById( 'area' ).style.top = 400;
                 y1 = 500;
     document.getElementById( 'triangle' ).style.top = y1;
     document.getElementById("select").innerText = "次のステージへ";
@@ -864,8 +855,6 @@ if(attaker < Cfriend - 1){
 
 attaker += 1;
     document.getElementById("select").innerText = "こうげき";
-document.getElementById("select2").innerText = "スキル";
-document.getElementById("select3").innerText = "アイテム";
     nowtext = 1;
 aiful6 = false;
 for (let i = 0; i < 4; i++) {
@@ -881,13 +870,13 @@ attaker += 1;
 aiful = 0;
 array[1] = friend[attaker + aiful] + "はどうする?";
     nulltype();
-    document.getElementById('area').style.top = '65%';
+    document.getElementById( 'area' ).style.top = 400;
     selectblock();
     selectfun = 1;
 }else{
 selectnone();
 attaker = 0;
-document.getElementById('area').style.top = '80%';
+document.getElementById( 'area' ).style.top = 600;
 nowtext = 3;
 selectfun = 6;
 attacker = 0;
@@ -912,19 +901,19 @@ attaker += 1;
     aiful = 0;
 array[1] = friend[attaker + aiful] + "はどうする?";
     nulltype();
-    document.getElementById('area').style.top = '65%';
+    document.getElementById( 'area' ).style.top = 400;
     selectblock();
     selectfun = 1;
     }
     if(selectfun === 1){
 if(document.getElementById("area").innerText === array[1]) {
 if(decide === 0) {
+window.location = 'end1.html';
+if(decide === 0)window.parent.postMessage("end", "*");
 if(document.getElementById("area").innerText === array[nowtext])selectfun = 2;
         decide = 0;
  window.setTimeout(sct,100);
-    document.getElementById("select").innerText = enemyName[0] + " hp:"+ enemyHp[0];
-document.getElementById("select2").innerText = enemyName[1] + " hp:" + enemyHp[1];
-document.getElementById("select3").innerText = enemyName[2] + " hp:" + enemyHp[2];
+
 if(document.getElementById("select3").innerText.includes(null)) {
 document.getElementById( 'select3' ).style.display = 'none'; 
     }
@@ -980,7 +969,7 @@ if(selectfun === 7){
 selectfun = 1;
 selectnone();
 attaker = 0;
-document.getElementById('area').style.top = '65%';
+document.getElementById( 'area' ).style.top = 400;
 nowtext = 1;
 aiful6 = false;
 for (let i = 0; i < 4; i++) {
@@ -1009,7 +998,7 @@ if(selectfun === 6){trun();} //攻撃反映、すでに攻撃対象がタヒん�
 const audio2 = document.getElementById("bgmT2");
 audio2.pause();
 audio2.src = "スポッ.mp3";
-audio2.play();
+;
 document.getElementById( 'triangleU' ).style.display = 'none';
 document.getElementById( 'triangleD' ).style.display = 'none';
 if((selectfun === 1)&&(attaker > 0)&&(friendHp[attaker - 1] > 0)) {
@@ -1038,7 +1027,7 @@ document.getElementById( 'triangleD' ).style.display = 'none';
 aiful = 0;
 array[1] = friend[attaker + aiful] + "はどうする?";
     nulltype();
-    document.getElementById('area').style.top = '65%';
+    document.getElementById( 'area' ).style.top = 400;
     selectblock();
     selectfun = 1;
 sc = false;
@@ -1046,7 +1035,9 @@ sc = false;
     }
 
 }
+
 function trun() {
+document.getElementById( 'cr' ).style.display = "none"
 if(attaker < Cfriend){
 aiful6 = false;
 for (let i = 0; i < 4; i++) {
@@ -1063,7 +1054,7 @@ if((action[attaker] === null)||(target[attaker] === null)) {
 action[attaker] = enemyName[0];
 }
 if(enemyName.includes(action[attaker])=== true) {
-random = Math.floor( Math.random() * friendAttack[attaker] + 1 ) - enemyGuard[0];
+random = Math.floor( Math.random() * friendAttack[attaker] + 1 ) - enemyGuard[enemyName.indexOf(action[attaker])];
 if(random < 0)random = 0;
 if((enemyHp[enemyName.indexOf(action[attaker])] < 1)||(enemyName[enemyName.indexOf(action[attaker])] === null)||(action[attaker] === null)||(target[attaker] === null)) {
 action[attaker] = enemyName[0];
@@ -1099,7 +1090,7 @@ attaker += 1;
 nowtext = 4;
 }else{
 if(attackE < Cenemy){
-random = Math.floor( Math.random() * enemyAttack[attackE] + 1 ) + 0;
+random = Math.floor( Math.random() * enemyAttack[attackE] + 1 ) + 3;
 random2 = Math.floor( Math.random() * Cfriend) + 0;
 attackE += 1;
 if(friendHp[random2] < 1){
@@ -1118,7 +1109,7 @@ attackE = 0;
 selectfun = 1;
 selectnone();
 attaker = 0;
-document.getElementById('area').style.top = '65%';
+document.getElementById( 'area' ).style.top = 400;
 nowtext = 1;
 aiful6 = false;
 for (let i = 0; i < 4; i++) {
@@ -1137,6 +1128,7 @@ array[1] = friend[attaker + aiful] + "はどうする?";
 document.getElementById("select2").innerText = "スキル";
 document.getElementById("select3").innerText = "アイテム";
 selectblock();
+    if (Cfriend -1 < attaker) fun = 1;
 }
 }
 nulltype();
@@ -1167,6 +1159,18 @@ type();
 var selects = 0;
 function b () {
 var key_code = event.keyCode;
+if((fun === 1)||(fun === 2)) {
+if(( key_code === 38 )&&(0 < decide)){
+y1 -= 50;
+document.getElementById( 'triangle' ).style.top = y1; 
+        decide -= 1;
+}
+if(( key_code === 40 )&&(selects - 1 > decide)){
+y1 += 50;
+document.getElementById( 'triangle' ).style.top = y1; 
+        decide += 1;
+}
+}
 if(((selectfun === 1)||(selectfun === 2)||(selectfun === 3)||(selectfun === 4))&&((key_code === 40)&&(selects > decide))
 ||((selectfun === 1)||(selectfun === 2)||(selectfun === 3)||(selectfun === 4))&&((key_code === 38)&&(decide > 0))){
 if(( key_code === 40 )&&((friend.some(name => document.getElementById('select').innerText.includes(name)))||(document.getElementById( 'select' ).innerText.includes(enemyName[0]) === true))) {
@@ -1393,7 +1397,7 @@ document.getElementById( 'triangle' ).style.top = y1;
 }
 }
 
-
+var Mps = [skillMp,skillMp2,skillMp3,skillMp4];
 
 
 function skillItemQTE () {
@@ -1436,13 +1440,13 @@ attaker += 1;
 aiful = 0;
 array[1] = friend[attaker + aiful] + "はどうする?";
     nulltype();
-    document.getElementById('area').style.top = '65%';
+    document.getElementById( 'area' ).style.top = 400;
     selectblock();
     selectfun = 1;
 }else{
 selectnone();
 attaker = 0;
-document.getElementById('area').style.top = '80%';
+document.getElementById( 'area' ).style.top = 600;
 nowtext = 3;
 selectfun = 6;
 attacker = 0;
@@ -1493,13 +1497,13 @@ document.getElementById("select2").innerText = "スキル";
 document.getElementById("select3").innerText = "アイテム";
     nowtext = 1;
     nulltype();
-    document.getElementById('area').style.top = '65%';
+    document.getElementById( 'area' ).style.top = 400;
     selectblock();
     selectfun = 1;
 }else{
 selectnone();
 attaker = 0;
-document.getElementById('area').style.top = '80%';
+document.getElementById( 'area' ).style.top = 600;
 nowtext = 3;
 selectfun = 6;
 attacker = 0;
@@ -1524,22 +1528,27 @@ document.getElementById("select2").innerText = "スキル";
 document.getElementById("select3").innerText = "アイテム";
     nowtext = 1;
     nulltype();
-    document.getElementById('area').style.top = '65%';
+    document.getElementById( 'area' ).style.top = 400;
     selectblock();
     selectfun = 1;
 }else{
 selectnone();
 attaker = 0;
-document.getElementById('area').style.top = '80%';
+document.getElementById( 'area' ).style.top = 600;
 nowtext = 3;
 selectfun = 6;
 attacker = 0;
 trun();
 }
 }else{
-
+if(friendMp[attaker] > Mps[attaker][decide] - 1) {
+if(attaker === 0)action[attaker] = skillIntro[decide];
+if(attaker === 1)action[attaker] = skillIntro2[decide];
+if(attaker === 2)action[attaker] = skillIntro3[decide];
+if(attaker === 3)action[attaker] = skillIntro4[decide];
+    }
 if(((attaker === 0)&&(skillEffect[decide].includes("回復") === true))||((attaker === 1)&&(skillEffect2[decide].includes("回復") === true))||((attaker === 2)&&(skillEffect3[decide].includes("回復") === true))||((attaker === 3)&&(skillEffect4[decide].includes("回復") === true))){ 
-if(friendMp[attaker] > 4) {
+if(friendMp[attaker] > Mps[attaker][decide] - 1) {
 if(attaker === 0)action[attaker] = skillIntro[decide];
 if(attaker === 1)action[attaker] = skillIntro2[decide];
 if(attaker === 2)action[attaker] = skillIntro3[decide];
@@ -1560,7 +1569,7 @@ document.getElementById( 'select3' ).style.display = 'none';
 }
 }else{
 if(((attaker === 0)&&(skillEffect[decide].includes("敵1体にこうげき") === true))||((attaker === 1)&&(skillEffect2[decide].includes("敵1体にこうげき") === true))||((attaker === 2)&&(skillEffect3[decide].includes("敵1体にこうげき") === true))||((attaker === 3)&&(skillEffect4[decide].includes("敵1体にこうげき") === true))){ 
-if(friendMp[attaker] > 4) {
+if(friendMp[attaker] > Mps[attaker][decide] + 1) {
 if(attaker === 0)action[attaker] = skillIntro[decide];
 if(attaker === 1)action[attaker] = skillIntro2[decide];
 if(attaker === 2)action[attaker] = skillIntro3[decide];
@@ -1591,13 +1600,13 @@ document.getElementById("select3").innerText = "アイテム";
     nowtext = 1;
 array[1] = friend[attaker] + "はどうする?";
     nulltype();
-    document.getElementById('area').style.top = '65%';
+    document.getElementById( 'area' ).style.top = 400;
     selectblock();
     selectfun = 1;
 }else{
 selectnone();
 attaker = 0;
-document.getElementById('area').style.top = '80%';
+document.getElementById( 'area' ).style.top = 600;
 nowtext = 3;
 selectfun = 6;
 attacker = 0;
@@ -1636,7 +1645,30 @@ if((skillIntro.includes(action[attaker]) === true)||(skillIntro2.includes(action
 
 skillDD();
 
+if(((attaker === 0)&&(skillEffect[skillIntro.indexOf(action[attaker])].includes("防御力上げ") === true))||((attaker === 1)&&(skillEffect2[skillIntro2.indexOf(action[attaker])].includes("防御力上げ") === true))||((attaker === 2)&&(skillEffect3[skillIntro3.indexOf(action[attaker])].includes("防御力上げ") === true))||((attaker === 3)&&(skillEffect4[skillIntro4.indexOf(action[attaker])].includes("防御力上げ") === true))){ 
+    array[4] += "\n" + "全員の防御力が上がった";
+for (let i = 0; i < 4; i++) {
+friendGuard[i] += 6;
+    }
+if(attaker === 0)friendMp[attaker] -= skillMp[skillIntro.indexOf(action[attaker])];
+if(attaker === 1)friendMp[attaker] -= skillMp2[skillIntro2.indexOf(action[attaker])];
+if(attaker === 2)friendMp[attaker] -= skillMp3[skillIntro3.indexOf(action[attaker])];
+if(attaker === 3)friendMp[attaker] -= skillMp4[skillIntro4.indexOf(action[attaker])];
+}
+
+if(((attaker === 0)&&(skillEffect[skillIntro.indexOf(action[attaker])].includes("攻撃力上げ") === true))||((attaker === 1)&&(skillEffect2[skillIntro2.indexOf(action[attaker])].includes("攻撃力上げ") === true))||((attaker === 2)&&(skillEffect3[skillIntro3.indexOf(action[attaker])].includes("攻撃力上げ") === true))||((attaker === 3)&&(skillEffect4[skillIntro4.indexOf(action[attaker])].includes("攻撃力上げ") === true))){ 
+    array[4] += "\n" + "全員の攻撃力が上がった";
+for (let i = 0; i < 4; i++) {
+friendAttack[i] += 6;
+    }
+if(attaker === 0)friendMp[attaker] -= skillMp[skillIntro.indexOf(action[attaker])];
+if(attaker === 1)friendMp[attaker] -= skillMp2[skillIntro2.indexOf(action[attaker])];
+if(attaker === 2)friendMp[attaker] -= skillMp3[skillIntro3.indexOf(action[attaker])];
+if(attaker === 3)friendMp[attaker] -= skillMp4[skillIntro4.indexOf(action[attaker])];
+}
+
 if(((attaker === 0)&&(skillEffect[skillIntro.indexOf(action[attaker])].includes("敵1体にこうげき") === true))||((attaker === 1)&&(skillEffect2[skillIntro2.indexOf(action[attaker])].includes("敵1体にこうげき") === true))||((attaker === 2)&&(skillEffect3[skillIntro3.indexOf(action[attaker])].includes("敵1体にこうげき") === true))||((attaker === 3)&&(skillEffect4[skillIntro4.indexOf(action[attaker])].includes("敵1体にこうげき") === true))){ 
+
 var skillLB = skillEffectL[attaker] + skillEffectB[attaker];
 random = Math.floor( Math.random() * skillLB ) + skillEffectL[attaker];
 random -= enemyGuard[enemyName.indexOf(target[attaker])];
@@ -1681,6 +1713,15 @@ random -= enemyGuard[enemyName.indexOf(target[attaker])];
 if(random < 0)random = 0;
 damageEa();
 array[4] += "\n" + target[attaker] + "に" + random + "ダメージ";
+if(enemyHp[target[attaker]] < 1){
+    Cenemy -= 1;
+if(Cenemy < 1)fun = 2;
+document.getElementById( enemyId[enemyName.indexOf(target[attaker])] ).style.display = 'none';
+aiful = enemyName.indexOf(action[attaker]);
+enemyName.splice( aiful,1 );
+enemyHp.splice( aiful,1 );
+enemyId.splice( aiful,1 );
+    }
 if(itemN[itemIntro.indexOf(action[attaker])] < 1) {
 aiful = itemIntro.indexOf(action[attaker]);
 itemN.splice( aiful,1 );
@@ -1700,7 +1741,7 @@ if(!skillgifC[attaker][skillS[attaker].indexOf(action[attaker])] === null)docume
 if(!skillsound[attaker][skillS[attaker].indexOf(action[attaker])] === null){
 const audio2 = document.getElementById("bgmT2");
 audio2.src = skillsound[attaker][skillS[attaker].indexOf(action[attaker])];
-audio2.play();
+;
 }
 setTimeout(() => {
 document.getElementById("blackSkill").animate(
@@ -1723,7 +1764,7 @@ document.getElementById( 'blackSkill' ).style.display = 'none';
 function sct() {
 sc = true;
 }
-document.getElementById('area').style.top = '80%';
+document.getElementById( 'area' ).style.top = 600;
 document.getElementById( 'area' ).style.left = 550;
 document.getElementById( 'triangle' ).style.top = 500;
 document.getElementById( 'triangle' ).style.left = 550;
@@ -1732,13 +1773,10 @@ document.getElementById( 'select' ).style.display = 'none';
 document.getElementById( 'select2' ).style.display = 'none'; 
 document.getElementById( 'select3' ).style.display = 'none'; 
 
-addEventListener( "keydown", b);
-
 function selectblock() {
 document.getElementById( 'triangle' ).style.display = 'block'; 
 document.getElementById( 'select' ).style.display = 'block'; 
-document.getElementById( 'select2' ).style.display = 'block'; 
-document.getElementById( 'select3' ).style.display = 'block'; 
+
     }
 function selectnone() {
 document.getElementById( 'triangle' ).style.display = 'none'; 
@@ -1773,16 +1811,16 @@ if(Cfriend < 1) fun = 1;
 const audio2 = document.getElementById("bgmT2");
 audio2.pause();
 audio2.src = "小パンチ.mp3";
-audio2.play();
+;
 }
 if(enemySkillS[attackE - 1][random3] === "攻撃力ダウン"){
-friendAttack[random2] -= 5;
+friendAttack[random2] -= 3;
 array[4] = enemyName[attackE - 1] + "は攻撃力を下げた\n" + friend[random2] + "の攻撃力が下がった"; 
 if(friendHp[random2] < 1) Cfriend -= 1;
 if(Cfriend < 1) fun = 1;
 }
 if(enemySkillS[attackE - 1][random3] === "防御力ダウン"){
-friendGuard[random2] -= 5;
+friendGuard[random2] -= 3;
 array[4] = enemyName[attackE - 1] + "は防御力を下げた\n" + friend[random2] + "の防御力が下がった"; 
 if(friendHp[random2] < 1) Cfriend -= 1;
 if(Cfriend < 1) fun = 1;
@@ -1794,6 +1832,10 @@ friendHp[random2] -= random;
 friendAttack[random2] -= 7;
 array[4] = enemyName[attackE - 1] + "は攻撃力が下がる攻撃をした\n" 
 + friend[random2] + "に" + random + "ダメージ" + "\n" + friend[random2] + "の攻撃力が下がった"; 
+    const audio2 = document.getElementById("bgmT2");
+    audio2.pause();
+    audio2.src = "小パンチ.mp3";
+    ;
 if(friendHp[random2] < 1) Cfriend -= 1;
 if(Cfriend < 1) fun = 1;
 }
@@ -1804,6 +1846,10 @@ friendHp[random2] -= random;
 friendGuard[random2] -= 7;
 array[4] = enemyName[attackE - 1] + "は防御力が下がる攻撃をした\n"
 + friend[random2] + "に" + random + "ダメージ" + "\n" + friend[random2] + "の防御力が下がった"; 
+    const audio2 = document.getElementById("bgmT2");
+    audio2.pause();
+    audio2.src = "小パンチ.mp3";
+    ;
 if(friendHp[random2] < 1) Cfriend -= 1;
 if(Cfriend < 1) fun = 1;
 }
@@ -1814,19 +1860,12 @@ if(random < 0)random = 0;
     array[4] = enemyName[attackE - 1] + "は全員に攻撃した";
 
     for (let i = 0; i < Cfriend; i++) {
-            if(friendHp[i] < 1)i += 1;
         if (friendHp[i] > 0) { 
             random = Math.floor(Math.random() * enemyAttack[attackE - 1] + 1);
             friendHp[i] -= random;
             array[4] += "\n" + friend[i] + "に" + random + "ダメージ"; 
             
             if(friendHp[i] < 1) { 
-i += 1;
-        if((friendHp[i] > 0)&&(i < Cfriend)) { 
-            random = Math.floor(Math.random() * enemyAttack[attackE - 1] + 1);
-            friendHp[i] -= random;
-            array[4] += "\n" + friend[i] + "に" + random + "ダメージ"; 
-}
                 Cfriend -= 1;
             }
         }
@@ -1835,7 +1874,7 @@ i += 1;
     const audio2 = document.getElementById("bgmT2");
     audio2.pause();
     audio2.src = "小パンチ.mp3";
-    audio2.play();
+    ;
 
     if (Cfriend < 1) fun = 1;
 }

@@ -57,7 +57,7 @@ display: none;
  }
 html, body {
     overflow: hidden;
-}
+} 55karenchan
 </style>
 <script>
 document.addEventListener("keydown", function(event) {
@@ -71,9 +71,10 @@ var bgm = false;
 var fun = "attention";
 
 window.addEventListener('message', function(event) {
+const audio = document.getElementById("bgmT");
     if (event.data === 'clicked') {
         fun = "title";
-        const audio = document.getElementById("bgmT");
+        
 
         if (audio) {
             audio.volume = 1;
@@ -88,16 +89,66 @@ window.addEventListener('message', function(event) {
             console.error("bgmT が見つかりません。");
         }
     }
-    if (event.data === 'keyplessed') {
-if(fun === "title"){
-
+    if (event.data === 'b1') {
 fun = "battle";
 af();
-}
+setTimeout(() => {
+  audio.src = "NK 6.m4a";
+audio.volume = 1;
+  audio.load();
+  audio.play();
+}, 1000);
+
+    }
+    if (event.data === 'b2') {
+fun = "battle";
+af();
+setTimeout(() => {
+  audio.src = "English class.m4a";
+audio.volume = 1;
+  audio.load();
+  audio.play();
+}, 1000);
+
+    }
+    if (event.data === 'b3') {
+fun = "battle";
+af();
+setTimeout(() => {
+  audio.src = "sience class";
+audio.volume = 1;
+  audio.load();
+  audio.play();
+}, 1000);
+
+    }
+    if (event.data === 'b4') {
+fun = "battle";
+af();
+    }
+    if (event.data === 'b5') {
+fun = "battle";
+af();
+    }
+    if (event.data === 'end') {
+fun = "battle";
+  audio.src = "Null 15.m4a";
+audio.volume = 1;
+  audio.load();
+  audio.play();
     }
     if (event.data === 'GOstageselect') {
 
 }
+    if (event.data === 'title') {
+fun = "title";
+af();
+  audio.src = "audio2.mp3";
+audio.volume = 1;
+  audio.load();
+  audio.play();
+    }
+
 
 });
 

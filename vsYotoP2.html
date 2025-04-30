@@ -627,7 +627,7 @@ enemyId.splice( aiful,1 );
     }
 }
 function carsol() {
-document.getElementById("fun").innerText = action + ","+ target;
+document.getElementById("fun").innerText = decide + ","+ target;
 if(selectfun === 1)document.getElementById( 'cr' ).style.display = 'block';
 if(document.getElementById("area").innerText.includes(friend[3]) === true)document.getElementById( 'cr' ).src = crI[3];
 if(document.getElementById("area").innerText.includes(friend[2]) === true)document.getElementById( 'cr' ).src = crI[2];
@@ -715,29 +715,6 @@ document.getElementById( 'triangleD' ).style.left = 650;
 document.getElementById( 'triangleU' ).style.display = 'none';
 document.getElementById( 'triangleD' ).style.display = 'none';
 var seiGi = false;
-
-addEventListener("keydown",b2);
-
-function b2 (){
-if(!seiGi === false){
-var key_code = event.keyCode;
-  if (key_code === 38) {
-if(decide > 0){
-    y1 -= 50;
-document.getElementById( 'triangle' ).style.top = y1; 
-        decide -= 1;
-}
-}
-  if (key_code === 40) {
-if(decide < 2){
-    y1 += 50;
-document.getElementById( 'triangle' ).style.top = y1; 
-        decide += 1;
-}
-}
-}
-}
-
 addEventListener( "keyup", mR);
 
 function mR (){
@@ -748,10 +725,8 @@ seiGi = false;
 cutIn();
 setTimeout(() => {
 if(decide === 0)window.location = 'vsAraike.html';
-if(decide === 0)window.parent.postMessage("b2", "*");
 if(decide === 1)window.location = 'vsYoto.html';
 if(decide === 2)window.location = 'st.html';
-if(decide === 2)window.parent.postMessage("title", "*");
 }, 1000);
 
 }
@@ -761,7 +736,6 @@ cutIn();
 setTimeout(() => {
 if(decide === 0)window.location = 'vsYoto.html';
 if(decide === 1)window.location = 'st.html';
-if(decide === 1)window.parent.postMessage("title", "*");
 }, 1000);
 }
 }
@@ -777,7 +751,6 @@ var key_code = event.keyCode;
 cutIn();
 setTimeout(() => {
 window.location = 'st.html';
-window.parent.postMessage("title", "*");
 }, 1000);
     }
     else {
@@ -811,9 +784,9 @@ nulltype();
 setTimeout(() => {
 seiGi = "GO";
 }, 1000);
-    document.getElementById('area').style.top = '65%';
+    document.getElementById( 'area' ).style.top = 400;
 selectblock();
-    y1 = 500*65/100;
+    y1 = 500;
     document.getElementById( 'triangle' ).style.top = y1;
     document.getElementById("select").innerText = "コンティニュー";
 document.getElementById("select2").innerText = "タイトル";
@@ -832,7 +805,7 @@ seiGi = "C";
 selectblock();
 selects = 3;
 decide = 0;
-    document.getElementById('area').style.top = '65%';
+    document.getElementById( 'area' ).style.top = 400;
                 y1 = 500;
     document.getElementById( 'triangle' ).style.top = y1;
     document.getElementById("select").innerText = "次のステージへ";
@@ -881,13 +854,13 @@ attaker += 1;
 aiful = 0;
 array[1] = friend[attaker + aiful] + "はどうする?";
     nulltype();
-    document.getElementById('area').style.top = '65%';
+    document.getElementById( 'area' ).style.top = 400;
     selectblock();
     selectfun = 1;
 }else{
 selectnone();
 attaker = 0;
-document.getElementById('area').style.top = '80%';
+document.getElementById( 'area' ).style.top = 600;
 nowtext = 3;
 selectfun = 6;
 attacker = 0;
@@ -912,7 +885,7 @@ attaker += 1;
     aiful = 0;
 array[1] = friend[attaker + aiful] + "はどうする?";
     nulltype();
-    document.getElementById('area').style.top = '65%';
+    document.getElementById( 'area' ).style.top = 400;
     selectblock();
     selectfun = 1;
     }
@@ -980,7 +953,7 @@ if(selectfun === 7){
 selectfun = 1;
 selectnone();
 attaker = 0;
-document.getElementById('area').style.top = '65%';
+document.getElementById( 'area' ).style.top = 400;
 nowtext = 1;
 aiful6 = false;
 for (let i = 0; i < 4; i++) {
@@ -1038,7 +1011,7 @@ document.getElementById( 'triangleD' ).style.display = 'none';
 aiful = 0;
 array[1] = friend[attaker + aiful] + "はどうする?";
     nulltype();
-    document.getElementById('area').style.top = '65%';
+    document.getElementById( 'area' ).style.top = 400;
     selectblock();
     selectfun = 1;
 sc = false;
@@ -1063,7 +1036,7 @@ if((action[attaker] === null)||(target[attaker] === null)) {
 action[attaker] = enemyName[0];
 }
 if(enemyName.includes(action[attaker])=== true) {
-random = Math.floor( Math.random() * friendAttack[attaker] + 1 ) - enemyGuard[0];
+random = Math.floor( Math.random() * friendAttack[attaker] + 1 ) - enemyGuard[enemyName.indexOf(action[attaker])];
 if(random < 0)random = 0;
 if((enemyHp[enemyName.indexOf(action[attaker])] < 1)||(enemyName[enemyName.indexOf(action[attaker])] === null)||(action[attaker] === null)||(target[attaker] === null)) {
 action[attaker] = enemyName[0];
@@ -1118,7 +1091,7 @@ attackE = 0;
 selectfun = 1;
 selectnone();
 attaker = 0;
-document.getElementById('area').style.top = '65%';
+document.getElementById( 'area' ).style.top = 400;
 nowtext = 1;
 aiful6 = false;
 for (let i = 0; i < 4; i++) {
@@ -1436,13 +1409,13 @@ attaker += 1;
 aiful = 0;
 array[1] = friend[attaker + aiful] + "はどうする?";
     nulltype();
-    document.getElementById('area').style.top = '65%';
+    document.getElementById( 'area' ).style.top = 400;
     selectblock();
     selectfun = 1;
 }else{
 selectnone();
 attaker = 0;
-document.getElementById('area').style.top = '80%';
+document.getElementById( 'area' ).style.top = 600;
 nowtext = 3;
 selectfun = 6;
 attacker = 0;
@@ -1493,13 +1466,13 @@ document.getElementById("select2").innerText = "スキル";
 document.getElementById("select3").innerText = "アイテム";
     nowtext = 1;
     nulltype();
-    document.getElementById('area').style.top = '65%';
+    document.getElementById( 'area' ).style.top = 400;
     selectblock();
     selectfun = 1;
 }else{
 selectnone();
 attaker = 0;
-document.getElementById('area').style.top = '80%';
+document.getElementById( 'area' ).style.top = 600;
 nowtext = 3;
 selectfun = 6;
 attacker = 0;
@@ -1524,13 +1497,13 @@ document.getElementById("select2").innerText = "スキル";
 document.getElementById("select3").innerText = "アイテム";
     nowtext = 1;
     nulltype();
-    document.getElementById('area').style.top = '65%';
+    document.getElementById( 'area' ).style.top = 400;
     selectblock();
     selectfun = 1;
 }else{
 selectnone();
 attaker = 0;
-document.getElementById('area').style.top = '80%';
+document.getElementById( 'area' ).style.top = 600;
 nowtext = 3;
 selectfun = 6;
 attacker = 0;
@@ -1591,13 +1564,13 @@ document.getElementById("select3").innerText = "アイテム";
     nowtext = 1;
 array[1] = friend[attaker] + "はどうする?";
     nulltype();
-    document.getElementById('area').style.top = '65%';
+    document.getElementById( 'area' ).style.top = 400;
     selectblock();
     selectfun = 1;
 }else{
 selectnone();
 attaker = 0;
-document.getElementById('area').style.top = '80%';
+document.getElementById( 'area' ).style.top = 600;
 nowtext = 3;
 selectfun = 6;
 attacker = 0;
@@ -1723,7 +1696,7 @@ document.getElementById( 'blackSkill' ).style.display = 'none';
 function sct() {
 sc = true;
 }
-document.getElementById('area').style.top = '80%';
+document.getElementById( 'area' ).style.top = 600;
 document.getElementById( 'area' ).style.left = 550;
 document.getElementById( 'triangle' ).style.top = 500;
 document.getElementById( 'triangle' ).style.left = 550;
