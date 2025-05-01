@@ -1,0 +1,62 @@
+<html>
+<title>hidden garally</title>
+<style>
+html, body {
+    overflow: hidden;
+}
+#attention{
+    	position: absolute;
+    top: 0;
+	left: 0;
+}
+#selectText {
+    	position: absolute;
+    top: 450;
+	left: 950;
+display: none;
+	  color: #FFF;
+ font-size: 30;
+font-family: serif;
+}
+#RR {
+    position: absolute;
+    width: 60%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+</style>
+<img src="black.png" id="RR" width="60%">
+<p>xキーでタイトルに戻る　矢印キーで他の画像を見る</p>
+<script>
+addEventListener( "keydown", clickStart);
+
+var alb = ["black.png","59.png","car.png",];
+var LL = 0;
+
+function clickStart(){
+var key_code = event.keyCode;
+  if (key_code === 88) {
+    var result = window.confirm('タイトル画面に戻りますか？');
+    
+    if( result ) {
+window.location = 'st.html';
+window.parent.postMessage("title", "*");
+    }
+}
+if( key_code === 37 ) {
+if(LL > 0){
+LL -= 1;
+}
+}
+if( key_code === 39 ) {
+if(LL < alb.length - 1){
+LL += 1;
+}
+}
+ document.getElementById("RR").src = alb[LL];
+}
+</script>
+</html>
