@@ -36,6 +36,11 @@ setTimeout(() => {
 window.location = 'garally2.html';
 }, 40000);
 const nC = document.getElementById("selectText").innerText.replace(/\\n/g, "\n");  
+
+history.replaceState(null, '', location.href);
+window.addEventListener('popstate', function(event) {
+  location.href = 'index.html';
+});
 </script>
 
 </html>

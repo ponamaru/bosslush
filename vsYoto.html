@@ -1851,6 +1851,10 @@ window.addEventListener('popstate', function(e) {
 
 var GM = "";
 
+history.replaceState(null, '', location.href);
+window.addEventListener('popstate', function(event) {
+  location.href = 'index.html';
+});
 </script>
 
 </html>

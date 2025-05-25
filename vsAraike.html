@@ -1454,6 +1454,7 @@ if((itemIntro[decide] === "アイテム1")||(itemIntro[decide] === "アイテム
 aiful = 0;
 document.getElementById("select").innerText = null;
 aiful6 = false;
+selects = Cfriend;
 for (let i = 0; i < CfriendF; i++) {
 if(friendHp[i] > 0) {
 document.getElementById( 'select' ).innerText += friend[i] + "\n";
@@ -1556,6 +1557,7 @@ decide = 0;
 aiful = 0;
 document.getElementById("select").innerText = null;
 aiful6 = false;
+selects = Cfriend;
 for (let i = 0; i < CfriendF; i++) {
 if(friendHp[i] > 0) {
 document.getElementById( 'select' ).innerText += friend[i] + "\n";
@@ -1865,6 +1867,12 @@ document.getElementById( 'triangle' ).style.top = y1;
 }
 }
 }
+
+
+history.replaceState(null, '', location.href);
+window.addEventListener('popstate', function(event) {
+  location.href = 'index.html';
+});
 </script>
 
 </html>

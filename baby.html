@@ -1880,7 +1880,10 @@ if(random < 0)random = 0;
 }
 if(Cfriend < 1) fun = 1;
 }
-
+history.replaceState(null, '', location.href);
+window.addEventListener('popstate', function(event) {
+  location.href = 'index.html';
+});
 </script>
 
 </html>
