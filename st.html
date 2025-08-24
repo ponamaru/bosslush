@@ -83,6 +83,7 @@ display: none;
 </style>
 <script>
 var bgm = false;
+var fun2 = true;
 const nC = document.getElementById("selectText").innerText.replace(/\\n/g, "\n");  
 document.getElementById("selectText").innerText = "始める\nステージセレクト\nギャラリー";
 
@@ -229,7 +230,9 @@ cutOut();
 
 }
 
-function cutIn () { 
+function cutIn () {
+if(fun2 === true){
+fun2 = false;
     document.getElementById("blackSquare").classList.remove("in");
     document.getElementById("blackSquare").classList.add("op1");
 document.getElementById("blackSquare").style.opacity = 1;
@@ -244,6 +247,7 @@ document.getElementById("blackSquare").animate(
 		easing: 'linear',
 	},
 );
+}
 }
 
 function cutOut () {

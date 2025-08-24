@@ -637,7 +637,7 @@ enemyId.splice( aiful,1 );
     }
 }
 function carsol() {
-document.getElementById("fun").innerText = friendGuard + "A" + friendAttack;
+document.getElementById("fun").innerText = friendGuard + "A" + friendAttack + "a" + fun;
 if(selectfun === 1)document.getElementById( 'cr' ).style.display = 'block';
 if(document.getElementById("area").innerText.includes(friend[3]) === true)document.getElementById( 'cr' ).src = crI[3];
 if(document.getElementById("area").innerText.includes(friend[2]) === true)document.getElementById( 'cr' ).src = crI[2];
@@ -1169,7 +1169,9 @@ y1 += 50;
 document.getElementById( 'triangle' ).style.top = y1; 
         decide += 1;
 }
+
 }
+if(fun === 0){
 if(((selectfun === 1)||(selectfun === 2)||(selectfun === 3)||(selectfun === 4))&&((key_code === 40)&&(selects > decide))
 ||((selectfun === 1)||(selectfun === 2)||(selectfun === 3)||(selectfun === 4))&&((key_code === 38)&&(decide > 0))){
 if(( key_code === 40 )&&((friend.some(name => document.getElementById('select').innerText.includes(name)))||(document.getElementById( 'select' ).innerText.includes(enemyName[0]) === true))) {
@@ -1392,6 +1394,7 @@ document.getElementById( 'triangle' ).style.top = y1;
 }
 }   
     }
+}
 }
 }
 }

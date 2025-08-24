@@ -1,0 +1,353 @@
+#editUI {
+color: #FFF;
+position: absolute;
+z-index: 20;
+background-color:rgba(0,0,0,0.5);
+}
+
+@keyframes flashing {
+  0%, 100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+#area {
+  display: block;
+  color: #FFF;
+  position: absolute;
+  font-size: 30px;
+  background-color: rgba(0, 0, 0, 0.5);
+
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  z-index: 1000;
+}
+
+#select {
+	  color: white;
+	position: absolute;
+	top: 500;
+	left: 600;
+    font-size: 30;
+    background-color:rgba(0,0,0,0.5);
+}
+#select2 {
+	  color: #FFF;
+	position: absolute;
+	top: 550;
+	left: 600;
+    font-size: 30;
+    background-color:rgba(0,0,0,0.5);
+}
+#select3 {
+	  color: #FFF;
+	position: absolute;
+	top: 600;
+	left: 600;
+    font-size: 30;
+    background-color:rgba(0,0,0,0.5);
+}
+#hpmpUI {
+    	position: absolute;
+    top: 400;
+	left: 0;
+display: none;
+    }
+#square {
+        background-color:rgba(0,0,255,0.5);
+    width: 200px;
+    height: 200px;
+    	position: absolute;
+    top: 70;
+	left: 10;
+}
+#square-boder {
+    width: 199px;
+    height: 199px;
+    	position: absolute;
+    top: 70;
+	left: 10;
+  border: 1px solid #000;
+}
+#square2 {
+    background-color:rgba(255,0,0,0.5);
+    width: 200px;
+    height: 200px;
+    	position: absolute;
+    top: 70;
+	left: 10;
+}
+html, body {
+    overflow: hidden;
+}
+#friendName, #friendName2, #friendName3, #friendName4 {
+    display: inline-block;
+    white-space: nowrap;
+    writing-mode: horizontal-tb;
+    width: auto;
+    max-width: 200px;
+}
+ #triangle {
+     width: 0;
+display: none;
+         	position: absolute;
+    top: 0;
+	left: 0;
+     height: 0;
+     border-top: 20px solid transparent;
+     border-right: 40px solid lightblue;
+     transform: scale(-0.7, 0.7);
+     border-bottom: 20px solid transparent;
+ }
+ #triangleD {
+display: none;
+     width: 0;
+         	position: absolute;
+    top: 0;
+	left: 0;
+     height: 0;
+     border-top: 10px solid transparent;
+     border-right: 20px solid white;
+     transform: scale(-0.2, 0.2);
+     border-bottom: 10px solid transparent;
+transform:rotate(-90deg); 
+ }
+ #triangleU {
+display: none;
+     width: 0;
+         	position: absolute;
+    top: 0;
+	left: 0;
+     height: 0;
+     border-top: 10px solid transparent;
+     border-right: 20px solid white;
+     transform: scale(-0.2, 0.2);
+     border-bottom: 10px solid transparent;
+transform:rotate(90deg); 
+ }
+#hp {
+    	position: absolute;
+    top: 100;
+	left: 20;
+}
+#mp {
+    	position: absolute;
+    top: 120;
+	left: 20;
+}
+#hp2 {
+    	position: absolute;
+    top: 100;
+	left: 20;
+}
+#mp2 {
+    	position: absolute;
+    top: 120;
+	left: 20;
+}
+#hp3 {
+    	position: absolute;
+    top: 100;
+	left: 20;
+}
+#mp3 {
+    	position: absolute;
+    top: 120;
+	left: 20;
+}
+#hp4 {
+    	position: absolute;
+    top: 100;
+	left: 20;
+}
+#mp4 {
+    	position: absolute;
+    top: 120;
+	left: 20;
+}
+#hpmpUI2 {
+    	position: absolute;
+    top: 400;
+	left: 82%;
+display: none;
+    }
+#hpmpUI4 {
+    	position: absolute;
+    top: 0;
+	left: 82%;
+display: none;
+    }
+#hpmpUI3 {
+    	position: absolute;
+    top: 0;
+	left: 0;
+display: none;
+    }
+#square3 {
+        background-color:rgba(0,0,255,0.5);
+    width: 200px;
+    height: 200px;
+    	position: absolute;
+    top: 70;
+	left: 10;
+}
+#square-boder2 {
+    width: 199px;
+    height: 199px;
+    	position: absolute;
+    top: 70;
+	left: 10;
+  border: 1px solid #000;
+}
+#square4 {
+    background-color:rgba(255,0,0,0.5);
+    width: 200px;
+    height: 200px;
+    	position: absolute;
+    top: 70;
+	left: 10;
+}
+#square5 {
+        background-color:rgba(0,0,255,0.5);
+    width: 200px;
+    height: 200px;
+    	position: absolute;
+    top: 70;
+	left: 10;
+}
+#square-boder3 {
+    width: 199px;
+    height: 199px;
+    	position: absolute;
+    top: 70;
+	left: 10;
+  border: 1px solid #000;
+}
+#square6 {
+    background-color:rgba(255,0,0,0.5);
+    width: 200px;
+    height: 200px;
+    	position: absolute;
+    top: 70;
+	left: 10;
+}
+#square7 {
+        background-color:rgba(0,0,255,0.5);
+    width: 200px;
+    height: 200px;
+    	position: absolute;
+    top: 70;
+	left: 10;
+}
+#square-boder4 {
+    width: 199px;
+    height: 199px;
+    	position: absolute;
+    top: 70;
+	left: 10;
+  border: 1px solid #000;
+}
+#square8 {
+    background-color:rgba(255,0,0,0.5);
+    width: 200px;
+    height: 200px;
+    	position: absolute;
+    top: 70;
+	left: 10;
+}
+
+#enemy1 {
+    	position: absolute;
+    top: 10%;
+	left: 25%;
+width: 700;
+display: none;
+}
+#enemy2 {
+    	position: absolute;
+    top: 250;
+	left: 600;
+display: none;
+}
+#fun {
+    	position: absolute;
+    top: 0;
+	left: 500;
+}
+.blinking{
+	-webkit-animation:blink 0.5s ease-in-out infinite alternate;
+    -moz-animation:blink 0.5s ease-in-out infinite alternate;
+    animation:blink 0.5s ease-in-out infinite alternate;
+}
+.blinking2{
+	-webkit-animation:blink 0.2s ease-in-out;
+    -moz-animation:blink 0.2s ease-in-out;
+    animation:blink 0.2s ease-in-out;
+animation-iteration-count: 2;
+}
+@-webkit-keyframes blink{
+    0% {opacity:0;}
+    100% {opacity:1;}
+}
+@-moz-keyframes blink{
+    0% {opacity:0;}
+    100% {opacity:1;}
+}
+@keyframes blink{
+    0% {opacity:0;}
+    100% {opacity:1;}
+}
+#friendName {
+position: absolute;
+top: 80;
+left: 20;
+}
+#friendName2 {
+position: absolute;
+top: 80;
+left: 20;
+}
+#friendName3 {
+position: absolute;
+top: 80;
+left: 20;
+}
+#friendName4 {
+position: absolute;
+top: 80;
+left: 20;
+}
+#cr {
+position: absolute;
+top: 450;
+left: 300;
+width: 200;
+display: none;
+}
+#enemy3 {
+    	position: absolute;
+    top: 250;
+	left: 1000;
+display: none;
+}
+#blackSquare {
+        background-color: black;
+    	position: absolute;
+    width: 100%;
+    height: 200%;
+    top: 0;
+opacity: 0;
+	left: 0;
+}
+#blackSkill {
+    	position: absolute;
+    width: 100%;
+display: none;
+    top: 0;
+	left: 0;
+}

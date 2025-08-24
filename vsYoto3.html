@@ -6,6 +6,7 @@ body {
   background-image: url("gim.png");
   background-size: cover;
 }
+
     </style>
 </head>
 <audio id="bgmT" src="dorakue9.m4a"></audio><audio id="bgmT2" src="効果音ラボ/決定ボタンを押す2.mp3"></audio>
@@ -162,6 +163,7 @@ document.getElementById("area").innerText = friend[attacker][5] + "は"+array[1]
   if (event.keyCode === 90) {
 
 if(decideSD === 3 || decideSD === 4|| decideSD === 5){
+
 if(decideSD === 3){
   action[attacker] = enemy[decide][6];
   ActionN[attacker] = decide;  
@@ -179,19 +181,17 @@ if(decideSD === 4){
 
 
 
-if(modeP === "command")attacker += 1;
-if(attacker >= Cfriend){
+if(modeP === "command")skip();
+
+if(attacker >= Cfriend && modeP==="command"){
   modeP = "Fturn";
   attacker = 0;
- modeP = "Fturn";
-
-attacker = 0;
-skip();
+if(modeP === "Fturn")execute();
 
 document.getElementById( 'select' ).style.display = "none";
 document.getElementById( 'triangle' ).style.display = "none";
 document.getElementById( 'area' ).style.top = "85%";
-document.getElementById("area").innerText = friend[attacker][5] + "は"+array[1];
+
 return;
 }
 
@@ -242,87 +242,10 @@ document.getElementById( 'select' ).innerText += ItemS[i][0] + "\n";
   }
 
 }
-if(modeP === "Fturn" && event.keyCode === 90){
-
-  if(attacker >= Cfriend){
-    // すでに全員行動済み
-    modeP = "Eturn";
-    modeP = "Eturn";
-attackerE = 0;
-random2 = Math.floor( Math.random() * enemySkillS[attackerE].length);
-random = Math.floor( Math.random() * enemySkillS[attackerE][random2][1]-enemySkillS[attackerE][random2][2] ) + enemySkillS[attackerE][random2][2];
-if(random < 0)random =0;
-random3 = Math.floor( Math.random() * CBfriendS.length);
-document.getElementById('area').innerText = enemy[attackerE][6] + enemySkillS[attackerE][random2][6];
+if(modeP === "Eturn" && attackerE < enemy.length){
 enemyA();
-    return;
-  }
-
-  const skillNames = skillS[attacker].map(s => s[0]);
-  const ItemNames = ItemS.map(s => s[0]);
-  if (skillNames.includes(action[attacker])) {
-    if(skillA[attacker] && skillA[attacker][ActionN[attacker]]){
-      document.getElementById('area').innerText = friend[attacker][5] + skillA[attacker][ActionN[attacker]];
-skillEffect();
-    } else {
-      document.getElementById('area').innerText = friend[attacker][5] + "の攻撃";
-
-    }
-  } else {
-if(ItemNames.includes(action[attacker])){
-    if(ItemS[attacker] &&ItemS[ActionN[attacker]]){
-document.getElementById('area').innerText = friend[attacker][5] +"は" + ItemS[ActionN[attacker]][0] + "を使った";
-ItemEffect();
 }
-}else{
-    document.getElementById('area').innerText = friend[attacker][5] + "の攻撃";
-random = Math.floor( Math.random() * friend[attacker][2]-friend[attacker][3] ) + friend[attacker][3];  
-enemy[ActionN[attacker]][0] -= random;
-if(enemy[ActionN[attacker]][0] < 1)modeP = "clear";
-  }
-}
-  if(modeP === "Fturn"){
-
-skip();
-return;
-}
-attacker += 1;
-
-}
-if(modeP === "clear"){
-decideSD = 2;
-selectSSit();
-}
-if(modeP === "Eturn"){
-random2 = Math.floor( Math.random() * enemySkillS[attackerE].length);
-random = Math.floor( Math.random() * enemySkillS[attackerE][random2][1]-enemySkillS[attackerE][random2][2] ) + enemySkillS[attackerE][random2][2];
-if(random < 0)random =0;
-random3 = Math.floor( Math.random() * CBfriendS.length );
-
-document.getElementById('area').innerText = enemy[attackerE][6] + enemySkillS[attackerE][random2][6];
-
-attackerE += 1;
-if(attackerE >= enemy.length){
-    modeP = "command";  
-    attackerE = 0;      
-
-    document.getElementById('select').style.display = "block";
-    selectPage = 0;
-    decideSD = 0;
-
-    document.getElementById('triangle').style.display = "block";
-    document.getElementById("area").style.top = "65%";
-    decide = 0;
-    attacker = 0;
-skip();
-
-document.getElementById("area").innerText = friend[attacker][5] + "は"+array[1];
-    document.getElementById('select').innerText = "";
-    selectSSit();
-    document.getElementById('triangle').style.top = (window.innerHeight * 0.75) + "px";
-return;
-  }
-}
+if(modeP === "Fturn" && attacker < Cfriend)execute();
 
 }
 var random2 = 0;
@@ -331,6 +254,33 @@ var random3 = 0;
 var attackerE = 0;
 var actionE =[[]];
 
+function execute (){
+
+  const skillNames = skillS[attacker].map(s => s[0]);
+  const ItemNames = ItemS.map(s => s[0]);
+
+if(skillNames.includes(action[attacker])){
+      document.getElementById('area').innerText = friend[attacker][5] + skillA[attacker][ActionN[attacker]];
+skillEffect();
+}else{
+if(ItemNames.includes(action[attacker])){
+document.getElementById('area').innerText = friend[attacker][5] +"は" + ItemS[ActionN[attacker]][0] + "を使った";
+ItemEffect();
+}else{
+document.getElementById('area').innerText = friend[attacker][5] + "の攻撃";
+random = Math.floor( Math.random() * friend[attacker][2]-friend[attacker][3] ) + friend[attacker][3];  
+enemy[ActionN[attacker]][0] -= random;
+if(enemy[ActionN[attacker]][0] < 1)modeP = "clear";
+
+}
+}
+skip();
+if(attacker > Cfriend -1 && modeP==="Fturn"){
+modeP = "Eturn";
+attacker=0;
+
+}
+}
 
 function enemyA () {
   if(friend[random3][0] < 1) {
@@ -346,6 +296,7 @@ function enemyA () {
   const friendN = friend.map(s => s[5]);
   if(enemySkillS[attackerE][random2][5] === "Attack"){
     friend[random3][0] -= random;
+
     if(friend[random3][0] < 0) friend[random3][0] = 0;
     if(friend[random3][0] < 1) {
       Cfriend -= 1;
@@ -372,8 +323,6 @@ function skillEffect() {
   friend[attacker][1] -= skillS[attacker][ActionN[attacker]][4];
   if (friend[attacker][1] < 0) friend[attacker][1] = 0;
 
-  attacker++;
-  skip(); // 行動結果の描画や次のターン処理へ
 }
 
 function ItemEffect () {
@@ -381,9 +330,6 @@ function ItemEffect () {
   if (ItemS[ActionN[attacker]][4] < 1) {
     ItemS.splice(ActionN[attacker], 1);
   }
-
-  attacker++;
-  skip(); 
 }
 
 
@@ -463,6 +409,7 @@ if(document.getElementById("area").innerText.includes(friend[i][5]))document.get
 
 if(modeP === "command")document.getElementById( 'cr' ).style.display = 'block';
 if(modeP === "Fturn")document.getElementById( 'cr' ).style.display = 'none';
+if(modeP === "Eturn")document.getElementById( 'cr' ).style.display = 'none';
 
 }
 var MPsq = ['square2','square4','square6','square8'];
@@ -480,13 +427,10 @@ HPb[i] = friend[i][0];
 }
 
 function skip (){
-if(friend[attacker][0] < 1) {
-attacker = 0;
+if(friend[attacker][0] > 0) {
 for (let i = 0; i < friend.length; i++) {
-if(friend[i][0] < 1) {
-attacker += 1;
-}
 if(friend[i][0] > 0) {
+attacker += 1;
 break;
 }
 }

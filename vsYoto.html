@@ -433,7 +433,7 @@ var skillsound = [
 [null,"効果音ラボ/小パンチ.mp3","効果音ラボ/小パンチ.mp3","効果音ラボ/小パンチ.mp3","効果音ラボ/小パンチ.mp3"],
 ["効果音ラボ/大パンチ.mp3","効果音ラボ/小パンチ.mp3","効果音ラボ/小パンチ.mp3","効果音ラボ/小パンチ.mp3","効果音ラボ/小パンチ.mp3"],
 ["効果音ラボ/大パンチ.mp3","効果音ラボ/小パンチ.mp3","効果音ラボ/小パンチ.mp3","効果音ラボ/小パンチ.mp3","効果音ラボ/小パンチ.mp3"]];
-skillgifC = [skillgifs,skillgifs2,skillgifs3,skillgifs4]
+skillgifC = [skillgifs,skillgifs2,skillgifs3,skillgifs4];
 var itemIntro = ["アイテム1","アイテム2","アイテム3"];
 var itemN = [3,3,2,3,3,3,null];
 var itemE = ["hpを回復","mp回復","敵1体に攻撃","効果なし","効果なし","効果なし",null];
@@ -449,7 +449,7 @@ var selectOver = 1;
 var attaker = 0; var sc = false;
 var action = [null,null,null,null];
 var friend = ["シンス","ユウガ","bob","uh"];
-var friendHp = [50,35,100,100];
+var friendHp = [5,5,100,100];
 var friendMp = [50,40,50,50];
 var friendHb = [50,35,100,100];
 var friendMb = [];
@@ -813,7 +813,7 @@ seiGi = "GO";
 }, 1000);
     document.getElementById('area').style.top = '65%';
 selectblock();
-    y1 = 500*65/100;
+    y1 = 500;
     document.getElementById( 'triangle' ).style.top = y1;
     document.getElementById("select").innerText = "コンティニュー";
 document.getElementById("select2").innerText = "タイトル";
@@ -1047,6 +1047,7 @@ sc = false;
 
 }
 function trun() {
+
 if(attaker < Cfriend){
 aiful6 = false;
 for (let i = 0; i < 4; i++) {
@@ -1829,6 +1830,7 @@ i += 1;
             friendHp[i] -= random;
             array[4] += "\n" + friend[i] + "に" + random + "ダメージ"; 
 }
+if (Cfriend < 1) fun = 1;
                 Cfriend -= 1;
             }
         }

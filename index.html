@@ -1,186 +1,37 @@
 <html>
-<audio id="bgmT" src="pool.mp3"></audio>
-<div id="blackSquare"></div><div id="square-boder"></div>
 <style>
-#Cscreen {
-    	position: absolute;
-    top: 0;
-	left: 0;
+
+html{
+  background-image: url("sience room.png");
+  background-size: cover;
+
 }
-#blackSquare {
-        background-color: black;
-    	position: absolute;
-    width: 100%;
-    height: 200%;
-    top: 0;
-opacity: 0;
-	left: 0;
+
+a:link {
+ color: #FFFFFF;
+ text-decoration: underline;
 }
-html, body {
-    overflow: hidden;
-}
-#title {
-    	position: absolute;
-    top: 0;
-	left: 0;
-}
-#skillD2{
-    	position: absolute;
-    top: 0;
-	left: 0;
-}
-#attention{
-    	position: absolute;
-    top: 0;
-	left: 0;
-}
-#selectText {
-    	position: absolute;
-    top: 450;
-	left: 950;
-display: none;
+.area {
+
+display: block;
 	  color: #FFF;
- font-size: 30;
-font-family: serif;
+width: fit-content;
+    font-size: 30;
+    background-color:rgba(0,0,0,0.5);
+    z-index: 2;
+display:inline-block
 }
- #triangle {
-display: none;
-     width: 0;
-         	position: absolute;
-    top: 450;
-	left: 900;
-     height: 0;
-     border-top: 20px solid transparent;
-     border-right: 40px solid orange;
-     transform: scale(-0.7, 0.7);
-     border-bottom: 20px solid transparent;
- }
-html, body {
-    overflow: hidden;
-} 55karenchan
+
+.ti{
+font-size: 40;
+color: #FFF;
+    z-index: 1;
+background-color:black;
+}
 </style>
-<script>
-document.addEventListener("keydown", function(event) {
-            // 矢印キー（←↑→↓）のデフォルト動作を無効化
-            if (["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].includes(event.key)) {
-                event.preventDefault();
-            }
-        });
-var bgm = false;
-
-var fun = "attention";
-
-window.addEventListener('message', function(event) {
-const audio = document.getElementById("bgmT");
-    if (event.data === 'clicked') {
-        fun = "title";
-        
-
-        if (audio) {
-            audio.volume = 1;
-            audio.loop = true;
-
-            audio.play().catch(error => {
-                console.error("音声の再生に失敗しました: ", error);
-            });
-
-            bgm = true;
-        } else {
-            console.error("bgmT が見つかりません。");
-        }
-    }
-    if (event.data === 'b1') {
-fun = "battle";
-af();
-setTimeout(() => {
-  audio.src = "NK 6.m4a";
-audio.volume = 1;
-  audio.load();
-  audio.play();
-}, 1000);
-
-    }
-    if (event.data === 'b2') {
-fun = "battle";
-af();
-setTimeout(() => {
-  audio.src = "English class.m4a";
-audio.volume = 1;
-  audio.load();
-  audio.play();
-}, 1000);
-
-    }
-    if (event.data === 'b3') {
-fun = "battle";
-af();
-setTimeout(() => {
-  audio.src = "sience class.m4a";
-audio.volume = 1;
-  audio.load();
-  audio.play();
-}, 1000);
-
-    }
-    if (event.data === 'b4') {
-fun = "battle";
-af();
-    }
-    if (event.data === 'b5') {
-fun = "battle";
-af();
-    }
-    if (event.data === 'end') {
-fun = "battle";
-  audio.src = "Null 15.m4a";
-audio.volume = 1;
-  audio.load();
-  audio.play();
-    }
-    if (event.data === 'Nosound') {
-audio.pause();
-}
-    if (event.data === 'title') {
-fun = "title";
-af();
-  audio.src = "audio2.mp3";
-audio.volume = 1;
-  audio.load();
-  audio.play();
-    }
-
-
-});
-
-function af() {
-const audio = document.getElementById("bgmT");
-let timerid = setInterval( ()=>{
-
-  if( (audio.volume - 0.1) <= 0 ){
-    audio.volume = 0;
-    audio.pause();
-audio.currentTime = 0; 
-    clearInterval(timerid); 
-  }
-
-  else{
-    audio.volume -= 0.2;
-  }
-}
-, 100); 
-}
-
-window.addEventListener("DOMContentLoaded", function () {
-    const iframe = document.getElementById("Cscreen");
-
-    if (iframe) {
-        iframe.contentWindow.postMessage({ action: "startGame" }, "*");
-    } else {
-        console.error("iframeが見つかりません。");
-    }
-});
-
-
-</script>
-<iframe id="Cscreen" src='log.html' width="100%" height="100%" sandbox="allow-scripts allow-same-origin"></iframe>
+<div class="ti">episode1</div>
+<div class="area">
+<p></p>
+<p><a href='iframeP.html'>play</a></p>
+</div>
 </html>
