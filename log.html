@@ -20,6 +20,9 @@ font-family: serif;
 }
 </style>
 <script>
+
+history.replaceState(null, null, location.href);
+
 addEventListener( "click", clickStart); addEventListener( "keydown", clickStart);
 
 function clickStart(){
@@ -33,4 +36,5 @@ var key_code = event.keyCode;
 parent.postMessage('keyplessed', "*");
 });
 </script>
+
 </html>
