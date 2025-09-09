@@ -82,6 +82,9 @@ display: none;
  }
 </style>
 <script>
+
+history.replaceState(null, null, location.href);
+
 var bgm = false;
 var fun2 = true;
 const nC = document.getElementById("selectText").innerText.replace(/\\n/g, "\n");  
@@ -270,3 +273,4 @@ document.getElementById("blackSquare").style.opacity = 0;
 
 </script>
 </html>
+
